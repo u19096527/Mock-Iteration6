@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PIOS3of6mNPSN3muxqk6Hbub6sTSWG5+yhtkCHvz/XDcoUdquLkCsyBD960cW7Y8znoucJ/Gu+XBOC29jZ/LlQ==",
+  "dgSpecHash": "+kv85uNOA3IXrRwO0okyxs80wi9kbGRx5JJ5y7Mtu2IBMYcr6l3c0fLgsuXfZw63gAE4tkeuCfjDQr3YoWtfcg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Wisani\\Documents\\GitHub\\Iteration6-API\\Iteration6-API\\Iteration6-API.csproj",
+  "projectFilePath": "C:\\Users\\Wisani\\Documents\\GitHub\\Mock-Iteration6\\Iteration6-API\\Iteration6-API\\Iteration6-API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Wisani\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Wisani\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

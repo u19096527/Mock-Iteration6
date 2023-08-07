@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Wisani\\Documents\\GitHub\\Iteration6-API\\Iteration6-API\\Iteration6-API.csproj": {}
+    "C:\\Users\\Wisani\\Documents\\GitHub\\Mock-Iteration6\\Iteration6-API\\Iteration6-API\\Iteration6-API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Wisani\\Documents\\GitHub\\Iteration6-API\\Iteration6-API\\Iteration6-API.csproj": {
+    "C:\\Users\\Wisani\\Documents\\GitHub\\Mock-Iteration6\\Iteration6-API\\Iteration6-API\\Iteration6-API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Wisani\\Documents\\GitHub\\Iteration6-API\\Iteration6-API\\Iteration6-API.csproj",
+        "projectUniqueName": "C:\\Users\\Wisani\\Documents\\GitHub\\Mock-Iteration6\\Iteration6-API\\Iteration6-API\\Iteration6-API.csproj",
         "projectName": "Iteration6-API",
-        "projectPath": "C:\\Users\\Wisani\\Documents\\GitHub\\Iteration6-API\\Iteration6-API\\Iteration6-API.csproj",
+        "projectPath": "C:\\Users\\Wisani\\Documents\\GitHub\\Mock-Iteration6\\Iteration6-API\\Iteration6-API\\Iteration6-API.csproj",
         "packagesPath": "C:\\Users\\Wisani\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Wisani\\Documents\\GitHub\\Iteration6-API\\Iteration6-API\\obj\\",
+        "outputPath": "C:\\Users\\Wisani\\Documents\\GitHub\\Mock-Iteration6\\Iteration6-API\\Iteration6-API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
