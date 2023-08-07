@@ -8,8 +8,8 @@ namespace Iteration6_API.Models
         [Key]
         public int AuditTrail_ID { get; set; }
 
-        [Required]
-        public DateOnly Date { get; set; }
+        [Required, DataType(DataType.Date)]
+        public DateTime Date { get; set; }
 
         [Required, StringLength(255)]
         public string Note { get; set; }

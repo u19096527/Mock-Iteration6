@@ -4,6 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.IO.Pipelines;
 using System.Reflection;
 
+using System;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
+
+
 namespace Iteration6_API.Models
 {
     public class AppDbContext : DbContext
@@ -134,6 +139,7 @@ namespace Iteration6_API.Models
             //    .WithMany(B => B.Employees)
             //    .HasForeignKey(B => B.Employee_Type_ID)
             //    .OnDelete(DeleteBehavior.Restrict);
+
 
         }
 

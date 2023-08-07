@@ -11,8 +11,8 @@ namespace Iteration6_API.Models
         public string Subject { get; set; }
         [Required, StringLength(100)]
         public string Description { get; set; }
-        [Required]
-        public DateOnly Date { get; set; }
+        [Required, DataType(DataType.Date)]
+        public DateTime Date { get; set; }
         [Required, MaxLengthAttribute]
         public string FileName { get; set; }
         [Required, MaxLengthAttribute]
