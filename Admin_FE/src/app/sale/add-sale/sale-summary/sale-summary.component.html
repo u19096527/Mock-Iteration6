@@ -1,0 +1,40 @@
+<div class="titlePage">
+    <h4> </h4>
+    <h4 style="font-weight: bold; padding-top: 5px;">
+        <a [routerLink]="'/sale'" style="text-decoration: black;">
+            <i class="far fa-arrow-alt-circle-left fa-lg" style="color: black;"></i>
+        </a>&nbsp;&nbsp;
+        <a [routerLink]="'/sale'" style="color: black;">
+            POINT OF SALE
+        </a>
+        <i class="fas fa-angle-right fa-lg"></i> ADD SALE
+    </h4>
+</div>
+
+<div class="container" style="text-align: center;">
+    <div style="padding: 20px;text-align: center;padding-left: 15px;padding-right: 25px;">
+        <ul>
+            <li>
+              <h5 class="menu-item" style="cursor: pointer;" [routerLink]="'/add-sale'">
+                <i class="fa fa-check-circle" aria-hidden="true" style="color: green;"></i> Select Student <hr style="height: 0.5px;width: 200px;font-weight: bold;background-color:green;">
+              </h5>
+            </li>
+            <li>
+              <h5 class="menu-item" style="cursor: pointer;" [routerLink]="'/sale-items'">
+                <i class="fa fa-check-circle" aria-hidden="true" style="color: green;"></i> Choose Sale Items  <hr style="height: 0.5px;width: 200px;font-weight: bold;background-color:green;">
+              </h5>
+            </li>
+            <li>
+              <h5 class="menu-item" style="cursor: pointer;" [routerLink]="'/sale-summary'" >
+                <i class="fa fa-check-circle" aria-hidden="true" ></i> Sale Summary <hr style="height: 0.5px;width: 200px;font-weight: bold;">
+              </h5>
+            </li>
+            <li>
+              <h5 class="menu-item" style="cursor: pointer;" [routerLink]="'/record-sale'">
+                <i class="fa fa-check-circle" aria-hidden="true" ></i> Record Sale
+              </h5>
+            </li>
+          </ul>
+    </div>
+</div>
+

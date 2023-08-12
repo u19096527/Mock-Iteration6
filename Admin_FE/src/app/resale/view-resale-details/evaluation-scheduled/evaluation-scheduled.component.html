@@ -1,0 +1,112 @@
+<mat-toolbar
+    style="height:max-content;background-color: #F5DEE9;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;float: inline-start;">
+    <div style="padding: 10px;justify-content: left;margin-right: 10px;">
+        <a class="navbar-brand" href="#">
+            <img src="../assets/Logo.png" width="180%" height="180%" class="d-inline-block align-top" alt="">
+        </a>
+    </div>
+    <div class="input-group mb-3" style="margin-top: 13px;">
+        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-icon">
+        <div class="input-group-append">
+            <span class="input-group-text" style="background-color: #4F274A;" id="search-icon">
+                <i class="fa fa-search" style="color: white;"></i>
+            </span>
+        </div>
+    </div>
+    <div style="padding: 10px;justify-content: right;">
+        <a [routerLink]="'/Login'" style="text-decoration: none;text-decoration-color: none;">
+            <button style="margin-left: 3px;margin-right: 3px;" class="btn btn-outline-primary">
+                LOGIN
+            </button>
+        </a>
+        <a [routerLink]="'/Register'" style="text-decoration: none;text-decoration-color: none; margin-right: 10px;">
+            <button style="margin-left: 3px;margin-right: 3px;" class="btn btn-outline-primary">REGISTER</button>
+        </a>
+        <button style="justify-content:cnter;padding: 10px;border:0px;border-radius: 50px;padding-top:15px;background-color: #4F2749;color: #F5DEE9;" [routerLink]="'/Cart'">
+            <i class="fa fa-shopping-cart fa-lg" style="margin-left: 6px; margin-right: 3px;"></i>
+            <span class="cart-badge"></span>
+        </button>
+        <i class="far fa-question-circle " [routerLink]="'/Help'" style="margin-left: 10px;margin-right: 3px;"
+            type="button"></i>
+    </div>
+</mat-toolbar>
+<nav class="navbar navbar-expand-lg" style="background-color:#4F274A ;">
+    <button class="navbar-toggler" style="color: white;" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-navicon fa-lg" style="color: white;"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" style="color: #F5DEE9;" [routerLink]="'/Home'">HOME </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: #F5DEE9;" [routerLink]="'/Books'">BOOKS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: #F5DEE9;" [routerLink]="'/Equipment'">EQUIPMENT</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" style="color: white;" href="#" id="navbarDropdownMenuLink"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    RESELL <span class="sr-only">(current)</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+                    style="background-color: #4F274A;color: white;">
+                    <a class="dropdown-item" style="color: white;" [routerLink]="'/Check'">Check Book Estimate</a>
+                    <a class="dropdown-item" style="color: white;" [routerLink]="'/Schedule'">Schedule Book
+                        Evaluation</a>
+                    <a class="dropdown-item" style="color: white;" [routerLink]="'/View-Resale'">View Resale Details</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: #F5DEE9;" [routerLink]="'/About'">ABOUT US</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+
+<div class="container" style="padding-bottom: 50px;">
+    <div class="dropdown">
+        <p class="dropdown-toggle" style="font-size: small;font-weight: bold;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="DropdownMenuLink">
+            RESELL
+        </p>
+        <div class="dropdown-menu" aria-labelledby="DropdownMenuLink" style="background-color: #4F274A;justify-self: right;">
+            <a class="dropdown-item" style="color: white;" [routerLink]="'/Check'">Check Book Estimate</a>
+            <a class="dropdown-item" style="color: white;" [routerLink]="'/Schedule'">Schedule Book
+                Evaluation</a>
+        </div>
+    </div>
+    <div class="row">
+        <h3 style="font-weight: bold;"><i class="far fa-arrow-alt-circle-left fa-md"
+                style="margin-right: 20px;cursor: pointer;" [routerLink]="'/View-Resale'"></i>Evaluation Scheduled</h3>
+        <hr style="width:100%; color: grey;text-align: left;">
+    </div>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr style="font-weight: bold;">
+                    <td></td>
+                    <td>Ref #</td>
+                    <td>Title</td>
+                    <td>ISBN</td>
+                    <td>Estiamted Price</td>
+                    <td>Date Scheduled</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let b of books">
+                    <td><i class="fa fa-trash fa-lg" style="color: #4F2749;"></i></td>
+                    <td>{{b.referenceNumber}}</td>
+                    <td>{{b.title}}</td>
+                    <td>{{b.isbn}}</td>
+                    <td>{{b.estimatedPrice}}</td>
+                    <td>{{b.date }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

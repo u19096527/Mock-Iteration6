@@ -1,0 +1,137 @@
+<mat-toolbar
+    style="height: max-content; background-color: #F5DEE9; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+    <div style="padding: 10px;">
+        <a class="navbar-brand" href="#">
+            <img src="../assets/Logo.png" width="100%" height="180%" class="d-inline-block align-top" alt="">
+        </a>
+    </div>
+
+    <div class="input-group" style="width:90%">
+        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-icon">
+        <div class="input-group-append">
+            <span class="input-group-text" style="background-color: #4F274A;" id="search-icon">
+                <i class="fa fa-search" style="color: white;"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="user-icon"
+        style="text-decoration: none; text-decoration-color: none; margin-left: 3px; margin-right: 3px;">
+        <button class="btn dropdown-toggle"
+            style="text-decoration: none; text-decoration-color: none; margin-left: 3px; margin-right: 3px; color: #F5DEE9;;background-color: #4F2749;"
+            type="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user-circle" style="color:#F5DEE9"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="userDropdown" style="background-color: #4F274A;color: #F5DEE9;">
+            <a class="dropdown-item" [routerLink]="'/Login'" style="color:white;">Login</a>
+            <a class="dropdown-item" [routerLink]="'/Register'" style="color:white;">Register</a>
+        </div>
+    </div>
+    <button
+        style="justify-content: center; padding: 10px; border: 0px; border-radius: 50px; padding-top: 15px; background-color: #4F2749; color: #F5DEE9;"
+        [routerLink]="'/Cart'">
+        <i class="fa fa-shopping-cart fa-lg" style="margin-left: 6px; margin-right: 3px;"></i>
+        <span class="cart-badge"></span>
+    </button>
+    <i class="far fa-question-circle" [routerLink]="'/Help'" style="margin-left: 10px; margin-right: 3px;"
+        type="button"></i>
+</mat-toolbar>
+
+
+<nav class="navbar navbar-expand-lg" style="background-color:#4F274A ;">
+    <button class="navbar-toggler" style="color: white;" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-navicon fa-lg" style="color: white;"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" style="color: white;" [routerLink]="'/Home'">HOME <span
+                        class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: #F5DEE9;" [routerLink]="'/Books'">BOOKS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: #F5DEE9;" [routerLink]="'/Equipment'">EQUIPMENT</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" style="color: #F5DEE9;" href="#" id="navbarDropdownMenuLink"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    RESELL
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+                    style="background-color: #4F274A;color: white;">
+                    <a class="dropdown-item" style="color: white;" [routerLink]="'/Check'">Check Book Estimate</a>
+                    <a class="dropdown-item" style="color: white;" [routerLink]="'/Schedule'">Schedule Book
+                        Evaluation</a>
+                    <a class="dropdown-item" style="color: white;" [routerLink]="'/View-Resale'">View Resale Details</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: #F5DEE9;" [routerLink]="'/About'">ABOUT US</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+
+<div class="container" style="text-align: center; padding: 50px;">
+    <div class=" bg-light shadow"
+        style="display: flex;border-radius:10px; flex-direction: column; align-items: center; justify-content: center; padding: 30px;background: linear-gradient(to bottom, rgba(255, 255, 255, 0.966) 30%, #4F2749 70%); overflow: hidden;">
+        <div>
+            <img src="https://st.depositphotos.com/1377214/2151/i/950/depositphotos_21514941-stock-photo-smiling-student-girl-with-books.jpg"
+                style="width: 100%; height: 100%;border: 2px #4F2749; border-radius: 200px; height: 300px; width: 300px; background-color: white;">
+        </div>
+        <h2 style="padding: 30px;color: white;">Hi Jade!</h2>
+
+        <div class="container row" style="padding: 50px;">
+            <div class="col" style="cursor: pointer;" [routerLink]="'/Account-Info'">
+                <div style="background-color: #AE7595;border-radius: 10px;">
+                    <div
+                        style="background-color: #AE7595;border-radius: 500px;padding-top: 20px;padding-bottom: 20px;height: fit-content;">
+                        <img src="../assets/Account.png" style="width: 100px;height: inherit;">
+                    </div>
+                </div>
+                <h6 style="color:white; font-weight:100;padding: 25px;">
+                    View Account Information
+                </h6>
+            </div>
+            <div class="col" style="cursor: pointer;" [routerLink]="'/Order'">
+                <div style="background-color: #AE7595;border-radius: 10px;">
+                    <div
+                        style="background-color: #AE7595;border-radius: 500px;padding-top: 20px;padding-bottom: 20px;height: fit-content;">
+                        <img src="../assets/Sent.png" style="width: 100px;height: inherit;">
+                    </div>
+                </div>
+                <h6 style="color:white; font-weight:100;padding: 25px;">
+                    Orders
+                </h6>
+            </div>
+            <div class="col" [routerLink]="'/View-Resale'" style="cursor: pointer;">
+                <div style="background-color: #AE7595;border-radius: 10px;">
+                    <div
+                        style="background-color: #AE7595;border-radius: 500px;padding-top: 20px;padding-bottom: 20px;;height: fit-content;">
+                        <img src="../assets/Resell.png" style="width: 100px;height: inherit;">
+                    </div>
+                </div>
+                <h6 style="color:white; font-weight:100;padding: 25px;">
+                    Resale
+                </h6>
+            </div>
+        </div>
+        <div class="container row">
+            <div class="col">
+                <button class="btn"
+                    style="background-color: rgb(235, 224, 224);color: red;font-weight: bolder;text-align: center;padding: 20px;border-radius:1\5px;"
+                    type="submit" [routerLink]="'/Delete-Account'">DELETE ACCOUNT</button>
+            </div>
+            <div class="col">
+                <button class="btn"
+                    style="background-color: rgb(235, 224, 224);color: rgb(100, 100, 214); margin-left:10px;font-weight: bolder;padding: 20px;"
+                    [routerLink]="'/Login'">LOG OUT</button>
+            </div>
+        </div>
+    </div>
+</div>

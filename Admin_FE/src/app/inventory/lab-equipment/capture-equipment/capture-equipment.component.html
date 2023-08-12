@@ -1,0 +1,51 @@
+<div class="titlePage">
+    <h4> </h4>
+    <h4 style="font-weight: bold; padding-top: 5px;">
+        <a [routerLink]="'/lab_equipment'" style="text-decoration: black;">
+            <i class="far fa-arrow-alt-circle-left fa-lg" style="color: black;"></i>
+        </a>&nbsp;&nbsp;
+        <a [routerLink]="'/lab_equipment'" style="color: black;">
+            LAB EQUIPMENT
+        </a>
+        <i class="fas fa-angle-right fa-lg"></i> CAPTURE EQUIPMENT
+    </h4>
+</div>
+
+<div style="padding: 50px;">
+    <div class="row">
+        <div class="col-6 offset-1">
+            <form class="form-group" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label" style="font-weight: bold;">Date Of Order</label>
+                    <input type="date" class="form-control" placeholder="2023/06/01" name="date" formControlName="date">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="font-weight: bold;">Description</label>
+                    <textarea type="text" class="form-control" placeholder="Some Words" name="description"
+                        formControlName="descripion"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="font-weight: bold;">Receipt</label>
+                    <input type="file" class="form-control" placeholder="2023/06/01" name="receipt"
+                        formControlName="receipt">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="font-weight: bold;">Supplier</label>
+                    <select class="select form-control">
+                        <option>f</option>
+                        <option>f</option>
+                        <option>f</option>
+                    </select>
+                </div>
+
+                <!--The buttons-->
+                <button type="submit" class="btn normButton" style="width: fit-content;" [routerLink]="'/capture-equip'">CAPTURE ORDER</button>
+                <button type="button" class="btn normCancel" style="margin-left:20px;width: 140px;" data-toggle="modal"
+                    data-target="#abortModal">CANCEL</button>
+            </form>
+        </div>
+    </div>
+</div>

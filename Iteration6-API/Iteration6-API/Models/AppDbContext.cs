@@ -6,7 +6,6 @@ using System.Reflection;
 
 using System;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
 
 
 namespace Iteration6_API.Models

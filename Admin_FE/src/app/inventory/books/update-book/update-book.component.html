@@ -1,0 +1,161 @@
+<div class="titlePage">
+    <h4> </h4>
+    <h4 style="font-weight: bold; padding-top: 5px;">
+        <a [routerLink]="'/books'" style="text-decoration: black;">
+            <i class="far fa-arrow-alt-circle-left fa-lg" style="color: black;"></i>
+        </a>&nbsp;&nbsp;
+        <a [routerLink]="'/books'" style="color: black;">
+            BOOKS
+        </a>
+        <i class="fas fa-angle-right fa-lg"></i> UPDATE BOOK
+    </h4>
+</div>
+
+<div style="padding:25px;">
+
+    <div class="row">
+        <div class="col-6 offset-1">
+            <form class="form-group" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label class="form-label" style="font-weight: bold;">ISBN</label>
+                    <input type="text" class="form-control" placeholder="Lab coat" name="name" formControlName="name">
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label" style="font-weight: bold;">Title</label>
+                    <input type="text" class="form-control" placeholder="Life of Pi" name="title">
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label" style="font-weight: bold;">Publisher Name</label>
+                    <input type="text" class="form-control" placeholder="Penguin Books" name="publisher">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="font-weight: bold;">Author Name</label>
+                    <input type="text" class="form-control" placeholder="Charles King" name="author">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="font-weight: bold;">Based Price</label>
+                    <input type="number" class="form-control" placeholder="89.00" name="base-price" min="0" max="25"
+                        step=".01">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="font-weight: bold;">Edition</label>
+                    <input type="number" class="form-control" placeholder="4" name="edition">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="font-weight: bold;">Year</label>
+                    <input type="text" class="form-control" placeholder="2009" name="year">
+                </div>
+
+
+                <!-- Module -->
+                <div class="mb-3">
+                    <label class="form-label" style="font-weight: bold;">Module Codes</label>
+                    <select class="select form-control" name="module_ID">
+                        <option>CMY 210</option>
+                    </select>
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label" style="font-weight: bold;">Quantity</label>
+                    <input type="number" class="form-control" placeholder="2009" name="year">
+                </div>
+
+                <!--The buttons-->
+                <button type="submit" class="btn normButton" style="width: fit-content;"
+                data-toggle="modal" data-target="#addModal">ADD BOOK</button>
+                <button type="button" class="btn normCancel" style="margin-left: 20px;width: 140px;" data-toggle="modal"
+                    data-target="#abortModal">CANCEL</button>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="addModal" role="dialog" data-backdrop="false">
+                    <div class="modal-dialog modal-md">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div style="background-color: #D9D9D9;height: fit-content;">
+                                <i type="button" class="close modalLabel fa fa-times-circle" data-dismiss="modal"></i>
+                            </div>
+                            <div class="modal-body">
+                                <div style="text-align: center;margin-top: 20px;margin-bottom: 20px;">
+                                    <h5>
+                                        <i class="fa fa-exclamation-triangle fa-2x"
+                                            style="color: #FFDB58;"></i>&nbsp;&nbsp; Are you sure
+                                        you want to update this book?
+                                    </h5>
+                                </div>
+                                <div style="text-align: center;margin-top: 5px;margin-bottom: 5px;">
+                                    <button type="button" class="btn update" style="width: 140px;" data-dismiss="modal"
+                                         > CONFIRM
+                                    </button>
+                                    <button type="button" class="btn normCancel" data-dismiss="modal"
+                                        style="margin-left:20px;width: 140px;"> CANCEL </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="successModal" role="dialog" data-backdrop="false">
+    <div class="modal-dialog modal-md">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div style="background-color: #D9D9D9;height: fit-content;">
+                <i type="button" class="close modalLabel fa fa-times-circle" data-dismiss="modal"></i>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center;margin-top: 20px;margin-bottom: 20px;">
+                    <h5>
+                        <i class="fa fa-check-circle" style="color: green;"></i>&nbsp;&nbsp; Book has been updated in the
+                        system.
+                    </h5>
+                </div>
+                <div style="text-align: center;margin-top: 5px;margin-bottom: 5px;">
+                    <button type="button" class="btn update" style="width: 140px;" [routerLink]="'/books'"> OKAY
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal FOR ABORT-->
+<div class="modal fade" id="abortModal" role="dialog" data-backdrop="false">
+    <div class="modal-dialog modal-md">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div style="background-color: #D9D9D9;height: fit-content;">
+          <i type="button" class="close modalLabel fa fa-times-circle" data-dismiss="modal"></i>
+        </div>
+        <div class="modal-body">
+          <div style="text-align: center;margin-top: 20px;margin-bottom: 20px;">
+            <h5>
+              <i class="fa fa-exclamation-triangle fa-2x" style="color: red;"></i>&nbsp;&nbsp; Update Book has been
+              aborted.
+            </h5>
+          </div>
+          <div style="text-align: center;margin-top: 5px;margin-bottom: 5px;">
+            <button type="button" class="btn update" style="width: 140px;" [routerLink]="'/lab_equipment'"> OKAY
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

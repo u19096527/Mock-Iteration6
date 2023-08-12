@@ -1,0 +1,102 @@
+<div class="titlePage">
+    <h4> </h4>
+    <h4 style="font-weight: bold; padding-top: 5px;">
+        <a [routerLink]="'/sale'" style="text-decoration: black;">
+            <i class="far fa-arrow-alt-circle-left fa-lg" style="color: black;"></i>
+        </a>&nbsp;&nbsp;
+        <a [routerLink]="'/sale'" style="color: black;">
+            POINT OF SALE
+        </a>
+        <i class="fas fa-angle-right fa-lg"></i> ADD SALE
+    </h4>
+</div>
+
+<div class="container" style="text-align: center;">
+    <div style="padding: 20px;text-align: center;padding-left: 15px;padding-right: 15px;">
+        <ul>
+            <li>
+              <h5 class="menu-item" style="cursor: pointer;" [routerLink]="'/add-sale'">
+                <i class="fa fa-check-circle" aria-hidden="true" style="color: blue;"></i> Select Student <hr style="height: 2px;width: 200px;font-weight: bold;">
+              </h5>
+            </li>
+            <li>
+              <h5 class="menu-item" style="cursor: pointer;" [routerLink]="'/sale-items'">
+                <i class="fa fa-check-circle" aria-hidden="true" ></i> Choose Sale Items  <hr style="height: 2px;width: 200px;font-weight: bold;">
+              </h5>
+            </li>
+            <li>
+              <h5 class="menu-item" style="cursor: pointer;" [routerLink]="'/sale-summary'" >
+                <i class="fa fa-check-circle" aria-hidden="true" ></i> Sale Summary <hr style="height: 2px;width: 200px;font-weight: bold;">
+              </h5>
+            </li>
+            <li>
+              <h5 class="menu-item" style="cursor: pointer;" [routerLink]="'/record-sale'">
+                <i class="fa fa-check-circle" aria-hidden="true" ></i> Record Sale <hr>
+              </h5>
+            </li>
+          </ul>
+    </div>
+</div>
+
+<!-- SEARCH BAR AND ADD NEW STUDENT BUTTON -->
+<div class="container" style="padding: 10px;text-align: center;">
+    <div style="padding-left: 15px;padding-right: 15px;">
+        <h3>Step 1: Select a Student</h3>
+
+        <div class="row" style="padding-left: 15px;padding-right: 15px;">
+            <div class="col-md-9">
+                <form (input)="searchStudent()">
+                    <input [(ngModel)]="searchQuery" type="search" placeholder="Search for a student"
+                        name="searchQuery">
+                </form>
+            </div>
+            <div class="col-md-3" style="justify-content: flex-end;text-align: right;padding-top: 10px;">
+                <a [routerLink]="'/add-student'" class="normButton btn">
+                    <i class="fas fa-user-plus fa-lg"></i>
+                    &nbsp;
+                    ADD NEW STUDENT
+                </a>
+            </div>
+        </div>
+
+        
+        <div style="padding-left: 15px;padding-right: 15px;padding-top: 15px;width:100%">
+            <table class="table table-inverse datatable-table" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Cell Number</th>
+                        <th>Email</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="height: max-content;" *ngFor="let item of arrStudents">
+                        <td>
+                            <input type="checkbox" id="{{item.student_ID}}">
+                        </td>
+                        <td>
+                            {{item.name}}
+                        </td>
+                        <td>
+                            {{item.surname}}
+                        </td>
+                        <td>
+                            {{item.cell_Number}}
+                        </td>
+                        <td>
+                            {{item.email}}
+                        </td>
+                        <td>
+                            <button type="button" class="btn"
+                                style="margin-top:10px; width: 140px;background-color: #4F2749; color:white; font-weight: bold;">
+                                NEXT </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> 

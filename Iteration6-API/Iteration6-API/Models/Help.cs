@@ -19,8 +19,8 @@ namespace Iteration6_API.Models
 
         //CONNECTIONS
         //LINK TO EMPLOYEE
-        public int Employee_ID { get; set; }
-        public Employee Employees { get; set; }
+        public int? Employee_ID { get; set; }
+        public Employee? Employees { get; set; }
 
     }
 }

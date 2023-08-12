@@ -1,0 +1,142 @@
+<div class="titlePage">
+  <h4> </h4>
+  <h4 style="font-weight: bold; padding-top: 5px;">
+    <a [routerLink]="'/supplier'" style="text-decoration: black;">
+      <i class="far fa-arrow-alt-circle-left fa-lg" style="color: black;"></i>
+    </a>&nbsp;&nbsp;
+    <a [routerLink]="'/supplier'" style="color: black;">
+      SUPPLIER
+    </a>
+    <i class="fas fa-angle-right fa-lg"></i> ADD SUPPLIER
+  </h4>
+</div>
+
+<div style="padding: 50px;">
+  <div class="row">
+    <div class="col-6 offset-1">
+      <form class="form-group" [formGroup]="formAdd" (ngSubmit)="addSupplier()">
+
+        <div class="mb-3">
+          <label class="form-label" style="font-weight: bold;">Name</label>
+          <input type="email" class="form-control" placeholder="Game" name="name" formControlName="name">
+        </div>
+        <div *ngIf="formAdd.controls['name']?.invalid && formAdd.controls['name']?.touched" class="text-danger">
+          Name is required.
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" style="font-weight: bold;">Address</label>
+          <textarea type="text" class="form-control" placeholder="1104 Foxtros Avenue, Arcadia, Pretoria" name="address"
+            formControlName="address"></textarea>
+        </div>
+        <div *ngIf="formAdd.controls['address']?.invalid && formAdd.controls['address']?.touched" class="text-danger">
+          Address is required.
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" style="font-weight: bold;">Email</label>
+          <input type="text" class="form-control" placeholder="email@mail.com" name="email" formControlName="email">
+        </div>
+        <div *ngIf="formAdd.controls['email']?.invalid && formAdd.controls['email']?.touched" class="text-danger">
+          Email is required.
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" style="font-weight: bold;">Cell</label>
+          <input type="tel" class="form-control" placeholder="0000000000" maxlength="10" name="cell"
+            formControlName="cell">
+        </div>
+        <div *ngIf="formAdd.controls['cell']?.invalid && formAdd.controls['cell']?.touched" class="text-danger">
+          Cell is required.
+        </div>
+
+        <button type="button" class="btn normButton" style="width: 140px;" data-toggle="modal" data-target="#addModal"
+          [disabled]="formAdd.invalid">ADD SUPPLIER</button>
+        <button type="button" class="btn normCancel" style="margin-left:20px;width: 140px;" data-toggle="modal"
+          data-target="#abortModal">CANCEL</button>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="addModal" role="dialog" data-backdrop="false">
+          <div class="modal-dialog modal-md">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div style="background-color: #D9D9D9;height: fit-content;">
+                <i type="button" class="close modalLabel fa fa-times-circle" data-dismiss="modal"></i>
+              </div>
+              <div class="modal-body">
+                <div style="text-align: center;margin-top: 20px;margin-bottom: 20px;">
+                  <h5>
+                    <i class="fa fa-exclamation-triangle fa-2x" style="color: #FFDB58;"></i>&nbsp;&nbsp; Are you sure
+                    you want to add this supplier?
+                  </h5>
+                </div>
+                <div style="text-align: center;margin-top: 5px;margin-bottom: 5px;">
+                  <button type="button" class="btn update" style="width: 140px;" data-dismiss="modal"
+                    data-toggle="modal" data-target="#successModal" (click)="addSupplier()"> CONFIRM
+                  </button>
+                  <button type="button" class="btn normCancel" data-dismiss="modal"
+                    style="margin-left:20px;width: 140px;"> CANCEL </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal FOR ABORT-->
+<div class="modal fade" id="abortModal" role="dialog" data-backdrop="false">
+  <div class="modal-dialog modal-md">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div style="background-color: #D9D9D9;height: fit-content;">
+        <i type="button" class="close modalLabel fa fa-times-circle" data-dismiss="modal"></i>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center;margin-top: 20px;margin-bottom: 20px;">
+          <h5>
+            <i class="fa fa-exclamation-triangle fa-2x" style="color: red;"></i>&nbsp;&nbsp; Add Supplier has been
+            aborted.
+          </h5>
+        </div>
+        <div style="text-align: center;margin-top: 5px;margin-bottom: 5px;">
+          <button type="button" class="btn update" style="width: 140px;" [routerLink]="'/supplier'"> OKAY
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal FOR success-->
+<div class="modal fade" id="successModal" role="dialog" data-backdrop="false">
+  <div class="modal-dialog modal-md">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div style="background-color: #D9D9D9;height: fit-content;">
+        <i type="button" class="close modalLabel fa fa-times-circle" data-dismiss="modal"></i>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center;margin-top: 20px;margin-bottom: 20px;">
+          <h5>
+            <i class="fa fa-check-circle" style="color: green;"></i>&nbsp;&nbsp; Supplier has been added to the
+            system.
+          </h5>
+        </div>
+        <div style="text-align: center;margin-top: 5px;margin-bottom: 5px;">
+          <button type="button" class="btn update" style="width: 140px;" [routerLink]="'/supplier'"> OKAY
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

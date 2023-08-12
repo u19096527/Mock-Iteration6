@@ -6,7 +6,7 @@ namespace Iteration6_API.Models
     public class Employee
     {
         [Key]
-        public int Student_ID { get; set; }
+        public int Employee_ID { get; set; }
         [Required]
         [StringLength(100)]
         public string Name { get; set; }

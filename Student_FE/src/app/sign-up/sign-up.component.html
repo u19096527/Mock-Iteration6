@@ -1,0 +1,136 @@
+<mat-toolbar
+    style="height:max-content;background-color: #F5DEE9;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
+    <div style="padding: 10px;justify-content: left;margin-right: 10px;">
+        <a class="navbar-brand" href="#">
+            <img src="../assets/Logo.png" width="180%" height="180%" class="d-inline-block align-top" alt="">
+        </a>
+    </div>
+    <div class="input-group mb-3" style="margin-top: 13px;">
+        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-icon">
+        <div class="input-group-append">
+            <span class="input-group-text" style="background-color: #4F274A;" id="search-icon">
+                <i class="fa fa-search" style="color: white;"></i>
+            </span>
+        </div>
+    </div>
+    <div style="padding: 10px;justify-content: right;">
+        <a [routerLink]="'/Login'" style="text-decoration: none;text-decoration-color: none;">
+            <button style="margin-left: 3px;margin-right: 3px;" class="btn btn-outline-primary">
+                LOGIN
+            </button>
+        </a>
+        <a [routerLink]="'/Register'" style="text-decoration: none;text-decoration-color: none; margin-right: 10px;">
+            <button style="margin-left: 3px;margin-right: 3px;" class="btn btn-primary">REGISTER</button>
+        </a>
+        <button style="justify-content:cnter;padding: 10px;border:0px;border-radius: 50px;padding-top:15px;background-color: #4F2749;color: #F5DEE9;" [routerLink]="'/Cart'">
+            <i class="fa fa-shopping-cart fa-lg" style="margin-left: 6px; margin-right: 3px;"></i>
+            <span class="cart-badge" [(ngModel)]="cart" [hidden]="cart == 0">{{cart}}</span> 
+        </button>
+        <i class="far fa-question-circle " [routerLink]="'/Help'" style="margin-left: 10px;margin-right: 3px;"
+            type="button"></i>
+    </div>
+</mat-toolbar>
+<nav class="navbar navbar-expand-lg" style="background-color:#4F274A ;">
+    <button class="navbar-toggler" style="color: white;" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-navicon fa-lg" style="color: white;"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" style="color: white;" [routerLink]="'/Home'">HOME <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: #F5DEE9;" [routerLink]="'/Books'">BOOKS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: #F5DEE9;" [routerLink]="'/Equipment'">EQUIPMENT</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" style="color: #F5DEE9;" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    RESELL
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #4F274A;color: white;">
+                    <a class="dropdown-item" style="color: white;" [routerLink]="'/Check'">Check Book Estimate</a>
+                    <a class="dropdown-item" style="color: white;" [routerLink]="'/Schedule'">Schedule Book Evaluation</a>
+                    <a class="dropdown-item" style="color: white;" [routerLink]="'/View-Resale'">View Resale Details</a>
+                  </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: #F5DEE9;" [routerLink]="'/About'">ABOUT US</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+
+<div class="container" style="padding-bottom: 50px;border-radius: 50px;">
+    <div>
+        <h2 style="text-align: center;" ><span style="color:#967685;cursor: pointer;" [routerLink]="'/Login'">LOGIN</span><span
+                style="color:black;margin-left: 60px;margin-right: 50px;"> | </span>
+            <span style="color:#4F2749;font-weight: bold;" >REGISTER</span>
+        </h2>
+        <div style="border: #4F274A 2px solid;border-radius: 15px;padding: 100px;">
+            <form class="form">
+                <div class="form-group">
+                    <div class="form-group">
+                        <label style="font-size: large;">First Name</label><br>
+                        <input type="text" style="border-radius: 5px;" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: large;">Last Name</label><br>
+                        <input type="text" style="border-radius: 5px;" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: large;">Phone Number</label><br>
+                        <input type="tel" style="border-radius: 5px;" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label style="font-size: large;">Email</label><br>
+                    <input type="email" style="border-radius: 5px;" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label style="font-size: large;">Password</label><br>
+                    <div class="row">
+                        <div class="col-11">
+                            <input [type]="hide ? 'password' : 'text'" name="password" class="form-control">
+                          </div>
+                          <div class="col-1">
+                            <button mat-icon-button matSuffix (click)="togglePassword($event)" [attr.aria-label]="'Hide password'"
+                              [attr.aria-pressed]="hide">
+                              <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                            </button>
+                          </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label style="font-size: large;">Confirm Password</label><br>
+                    <div class="row">
+                        <div class="col-11">
+                            <input [type]="show ? 'password' : 'text'" name="password" class="form-control">
+                          </div>
+                          <div class="col-1">
+                            <button mat-icon-button matSuffix (click)="toggleConfirmPassword($event)" [attr.aria-label]="'Hide password'"
+                              [attr.aria-pressed]="show">
+                              <mat-icon>{{ show ? 'visibility_off' : 'visibility' }}</mat-icon>
+                            </button>
+                          </div>
+                    </div>
+                </div>
+                <p style="text-align: center;">Have an account? Log In <a [routerLink]="'/Login'">here</a>
+                </p>
+                <div style="text-align: center;">
+                    <button class="btn" style="background-color: #4F274A;color: white;width: 150px;height:50px;font-weight: bolder;text-align: center;" type="submit">REGISTER</button>
+                    <button class="btn" style="background-color: black;color: white; margin-left:10px;width: 100px;height:50px;font-weight: bolder;"
+                        [routerLink]="'/Home'">CANCEL</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<hr style="width:40%; color: #4F2749;">
+
+

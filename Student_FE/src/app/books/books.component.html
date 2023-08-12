@@ -1,0 +1,329 @@
+<mat-toolbar
+    style="height: max-content; background-color: #F5DEE9; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+    <div style="padding: 10px;">
+        <a class="navbar-brand" href="#">
+            <img src="../assets/Logo.png" width="100%" height="180%" class="d-inline-block align-top" alt="">
+        </a>
+    </div>
+
+    <div class="input-group" style="width:90%">
+        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-icon">
+        <div class="input-group-append">
+            <span class="input-group-text" style="background-color: #4F274A;" id="search-icon">
+                <i class="fa fa-search" style="color: white;"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="user-icon"
+        style="text-decoration: none; text-decoration-color: none; margin-left: 3px; margin-right: 3px;">
+        <button class="btn dropdown-toggle"
+            style="text-decoration: none; text-decoration-color: none; margin-left: 3px; margin-right: 3px; color: #F5DEE9;;background-color: #4F2749;"
+            type="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user-circle" style="color:#F5DEE9"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="userDropdown" style="background-color: #4F274A;color: #F5DEE9;">
+            <a class="dropdown-item" [routerLink]="'/Login'" style="color:white;">Login</a>
+            <a class="dropdown-item" [routerLink]="'/Register'" style="color:white;">Register</a>
+        </div>
+    </div>
+    <button
+        style="justify-content: center; padding: 10px; border: 0px; border-radius: 50px; padding-top: 15px; background-color: #4F2749; color: #F5DEE9;"
+        [routerLink]="'/Cart'">
+        <i class="fa fa-shopping-cart fa-lg" style="margin-left: 6px; margin-right: 3px;"></i>
+        <span class="cart-badge"></span>
+    </button>
+    <i class="far fa-question-circle" [routerLink]="'/Help'" style="margin-left: 10px; margin-right: 3px;"
+        type="button"></i>
+</mat-toolbar>
+<nav class="navbar navbar-expand-lg" style="background-color:#4F274A ;">
+    <button class="navbar-toggler" style="color: white;" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-navicon fa-lg" style="color: white;"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" style="color: #F5DEE9;" [routerLink]="'/Home'">HOME </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: white;" [routerLink]="'/Books'">BOOKS <span
+                        class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: #F5DEE9;" [routerLink]="'/Equipment'">EQUIPMENT</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" style="color: #F5DEE9;" href="#" id="navbarDropdownMenuLink"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    RESELL
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+                    style="background-color: #4F274A;color: white;">
+                    <a class="dropdown-item ditem" style="color: white;" [routerLink]="'/Check'">Check Book Estimate</a>
+                    <a class="dropdown-item ditem" style="color: white;" [routerLink]="'/Schedule'">Schedule Book
+                        Evaluation</a>
+                    <a class="dropdown-item ditem" style="color: white;" [routerLink]="'/View-Resale'">View Resale
+                        Details</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: #F5DEE9;" [routerLink]="'/About'">ABOUT US</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+
+            <div class="accordion" id="filter">
+                <div class="accordion-item">
+                    <div class="accordion-header" id="fac"
+                        style="background-color: 	#1E90FF;color: white; padding: 10px;">
+                        <div class="accordion-button collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"
+                            (click)="flipIcon()">
+                            FACULTIES
+                            <i class="fa fa-angle-up float-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div id="collapseOne" class="collapse" aria-labelledby="fac" data-parent="#filter">
+                        <div class="accordion-body">
+
+                            <hr>
+
+                            <div class="accordion" id="filterEMS">
+                                <div class="accordion-item">
+                                    <div class="accordion-header" id="facEMS"
+                                        style="background-color: #6495ED;color: white; padding: 10px;">
+                                        <div class="accordion-button collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseEMS" aria-expanded="false"
+                                            aria-controls="collapseEMS">
+                                            ECONOMICS & MANAGEMENT SCIENCES
+                                            <i class="fa fa-angle-up float-right" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div id="collapseEMS" class="collapse" aria-labelledby="facEMS"
+                                        data-parent="#filterEMS">
+                                        <div class="accordion-body">
+                                            <hr>
+                                            ACCOUNTING
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion" id="filterEd">
+                                <div class="accordion-item">
+                                    <div class="accordion-header" id="facED"
+                                        style="background-color: #6495ED;color: white; padding: 10px;">
+                                        <div class="accordion-button collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseED" aria-expanded="false" aria-controls="collapseED">
+                                            EDUCATION
+                                            <i class="fa fa-angle-up float-right" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div id="collapseED" class="collapse" aria-labelledby="facED"
+                                        data-parent="#filterEd">
+                                        <div class="accordion-body">
+                                            <hr>
+                                            EDUCATION
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion" id="filterIT">
+                                <div class="accordion-item">
+                                    <div class="accordion-header" id="facHS"
+                                        style="background-color: #6495ED;color: white; padding: 10px;">
+                                        <div class="accordion-button collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseIT" aria-expanded="false" aria-controls="collapseIT">
+                                            ENGINEERING, BUILT ENVIRONMENT & INFORMATION TECHNOLOGY
+                                            <i class="fa fa-angle-up float-right" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div id="collapseIT" class="collapse" aria-labelledby="facIT"
+                                        data-parent="#filterIT">
+                                        <div class="accordion-body">
+                                            <hr>
+                                            INFORMATION SCIENCES
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion" id="filterHealth">
+                                <div class="accordion-item">
+                                    <div class="accordion-header" id="facHS"
+                                        style="background-color: #6495ED;color: white; padding: 10px;">
+                                        <div class="accordion-button collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseHealth" aria-expanded="false"
+                                            aria-controls="collapseHealth">
+                                            HEALTH SCIENCES
+                                            <i class="fa fa-angle-up float-right" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div id="collapseHealth" class="collapse" aria-labelledby="facHS"
+                                        data-parent="#filterHealth">
+                                        <div class="accordion-body">
+                                            <hr>
+                                            HEALTH SCIENCES
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion" id="filterHN">
+                                <div class="accordion-item">
+                                    <div class="accordion-header" id="facHS"
+                                        style="background-color: #6495ED;color: white; padding: 10px;">
+                                        <div class="accordion-button collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseHN" aria-expanded="false" aria-controls="collapseHN">
+                                            HUMANITIES
+                                            <i class="fa fa-angle-up float-right" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div id="collapseHN" class="collapse" aria-labelledby="facHN"
+                                        data-parent="#filterHN">
+                                        <div class="accordion-body">
+                                            <hr>
+                                            ART
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion" id="filterL">
+                                <div class="accordion-item">
+                                    <div class="accordion-header" id="facHS"
+                                        style="background-color: #6495ED;color: white; padding: 10px;">
+                                        <div class="accordion-button collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseL" aria-expanded="false" aria-controls="collapseL">
+                                            LAW
+                                            <i class="fa fa-angle-up float-right" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div id="collapseL" class="collapse" aria-labelledby="facL" data-parent="#filterL">
+                                        <div class="accordion-body">
+                                            <hr>
+                                            FAMILY LAW
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion" id="filterNAS">
+                                <div class="accordion-item">
+                                    <div class="accordion-header" id="facHS"
+                                        style="background-color: #6495ED;color: white; padding: 10px;">
+                                        <div class="accordion-button collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseNAS" aria-expanded="false"
+                                            aria-controls="collapseNAS">
+                                            NATURAL & AGRICULTURE SCIENCES
+                                            <i class="fa fa-angle-up float-right" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div id="collapseNAS" class="collapse" aria-labelledby="facNAS"
+                                        data-parent="#filterNAS">
+                                        <div class="accordion-body">
+                                            <hr>
+                                            MATHEMATICS
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion" id="filterT">
+                                <div class="accordion-item">
+                                    <div class="accordion-header" id="facHS"
+                                        style="background-color: #6495ED;color: white; padding: 10px;">
+                                        <div class="accordion-button collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseT" aria-expanded="false" aria-controls="collapseT">
+                                            THEOLOGY
+                                            <i class="fa fa-angle-up float-right" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div id="collapseT" class="collapse" aria-labelledby="facT" data-parent="#filterT">
+                                        <div class="accordion-body">
+                                            <hr>
+                                            THEOLOGY
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion" id="filterV">
+                                <div class="accordion-item">
+                                    <div class="accordion-header" id="facHS"
+                                        style="background-color: #6495ED;color: white; padding: 10px;">
+                                        <div class="accordion-button collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseV" aria-expanded="false" aria-controls="collapseV">
+                                            VETERINARY SCIENCES
+                                            <i class="fa fa-angle-up float-right" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div id="collapseV" class="collapse" aria-labelledby="facV" data-parent="#filterV">
+                                        <div class="accordion-body">
+                                            <hr>
+                                            ANIMAL SCIENCES
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-9">
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-sm-4" *ngFor="let b of bookList">
+                    <div class="card bg-light shadow" style="text-align: center;margin-bottom: 15px;padding-top: 10px;" >
+                        <img src="{{b.image}}"
+                            alt="Card Image" class="card-img-top mx-auto" style="width: 50%; height: 50%;">
+
+                        <div class="card-body">
+                            <small class="card-title">{{b.isbn}}</small><br>
+                            <h5 class="card-title" style="font-weight: bold;">{{b.title}}</h5>
+                            <p class="card-subtitle">{{b.authorName}}</p>
+                            <small class="card-subtitle" style="font-weight: bold;"><span
+                                    style="font-style: italic;">E</span> {{b.edition}}</small>
+                            <hr style="width:70%;">
+                            <div class="card-text">
+                                <h2 style="font-weight: bold;">{{ b.price| currency: 'R':'symbol':'1.2-2' }}</h2>
+                                <button class="btn btn-primary">
+                                    <small style="font-weight: lighter;">
+                                        <i class="fa fa-shopping-cart fa-lg"></i> Add to Cart
+                                    </small>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="text-align: center;width: 80%;justify-content: center;">
+    <hr style="text-align: center;width: 80%;justify-content: center;">
+</div>

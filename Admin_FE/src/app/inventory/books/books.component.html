@@ -1,0 +1,191 @@
+<div class="titlePage">
+    <h4> </h4>
+    <h4 style="font-weight: bold; padding-top: 5px;">
+        <a [routerLink]="'/inventory'" style="text-decoration: black;">
+            <i class="far fa-arrow-alt-circle-left fa-lg" style="color: black;"></i>
+        </a>
+        &nbsp;
+        BOOKS
+    </h4>
+</div>
+<div class="container-fluid" style="padding: 20px;">
+    <div class="row" style="padding-left: 10px;padding-right: 10px;justify-content: center;">
+        <div class="col">
+            <form>
+                <input type="text" placeholder="Search...">
+            </form>
+        </div>
+    </div>
+    <div class="row" style="padding-left: 10px;padding-right: 10px;justify-content: center;">
+        <div class="col">
+            <a [routerLink]="'/add-book'" class="normButton btn ">
+                <i class="fas fa-plus fa-lg"></i>
+                &nbsp;
+                ADD BOOK
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a [routerLink]="'/faculty'" class="normButton btn">
+                <i class="fas fa-cog fa-lg"></i>
+                &nbsp;
+                FACULTY
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a [routerLink]="'/prescribed-book'" class="normButton btn">
+                <i class="fas fa-cog fa-lg"></i>
+                &nbsp;
+                PRESCRIBED BOOKS
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="padding-left: 25px;">
+    <div class="card-container">
+        <div class="card mb-3 col" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="card-img col-md-5">
+                    <img style="width: 50%;height: 50%;"
+                        src="https://upbookmark.com/cdn/shop/products/9781337399074_bd7f5bf6-515f-473a-82fe-cc81ea5e83db_480x480.jpg?v=1633429836"
+                        class="card-img" alt="..." style="width: 100%;height: 100%;">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <p class="card-title" style="font-weight: bold;">
+                            CHEMISTRY AND CHEMICAL REACTIVITY
+                        </p>
+                        <p class="card-title">
+                            TREICHEL P
+                        </p>
+                        <small class="card-title">9781337399074</small> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        <small class="card-title" style="font-weight: bolder;">( CMY 210 )</small>
+
+                        <hr style="width: 95%;text-align: center;">
+                        <h5 class="card-title" style="font-weight: bold;"> R 1 204.50 <small
+                                style="font-size: x-small;">
+                                per item </small><br>
+                        </h5>
+                        <div class="row">
+                            <div class="col" style="text-align: left;">
+                                <i class="fa fa-archive "
+                                    style="color: rgb(111, 111, 204);font-size:12px;cursor: pointer;margin-bottom: 5px;"
+                                    [routerLink]="'/stock-take'"> STOCK
+                                </i>
+                                <p class="card-text" style="font-size: x-small; cursor: pointer;"
+                                    [routerLink]="'/write-off'"><i class="fas fa-times-circle fa-lg"
+                                        style="color: goldenrod;"></i> Qty: 10</p>
+                            </div>
+                            <div class="col" style="text-align: right;">
+                                <i class="far fa-edit fa-lg" style="margin-right:10px; cursor: pointer;"
+                                    [routerLink]="'/update-book'"></i>
+                                    <i class="fas fa-trash fa-lg" style="color: red;cursor: pointer;" data-toggle="modal"
+                                    data-target="#deleteModal"></i>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3 col" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="card-img col-md-5">
+                    <img style="width: 50%;height: 50%;"
+                        src="https://upbookmark.com/cdn/shop/products/9781337399074_bd7f5bf6-515f-473a-82fe-cc81ea5e83db_480x480.jpg?v=1633429836"
+                        class="card-img" alt="..." style="width: 100%;height: 100%;">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <p class="card-title" style="font-weight: bold;">
+                            CHEMISTRY AND CHEMICAL REACTIVITY
+                        </p>
+                        <p class="card-title">
+                            TREICHEL P
+                        </p>
+                        <small class="card-title">9781337399074</small> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        <small class="card-title" style="font-weight: bolder;">( CMY 210 )</small>
+                        <hr style="width: 95%;text-align: center;">
+                        <h5 class="card-title" style="font-weight: bold;"> R 1 204.50 <small
+                                style="font-size: x-small;">
+                                per item </small><br>
+                        </h5>
+                        <div class="row">
+                            <div class="col" style="text-align: left;">
+                                <i class="fa fa-archive "
+                                    style="color: rgb(111, 111, 204);font-size:12px;cursor: pointer;margin-bottom: 5px;"
+                                    [routerLink]="'/stock-take'"> STOCK
+                                </i>
+                                <p class="card-text" style="font-size: x-small; cursor: pointer;"
+                                    [routerLink]="'/write-off'"><i class="fas fa-times-circle fa-lg"
+                                        style="color: goldenrod;"></i> Qty: 10</p>
+                            </div>
+                            <div class="col" style="text-align: right;">
+                                <i class="far fa-edit fa-lg" style="margin-right:10px; cursor: pointer;"
+                                    [routerLink]="'/update-book'"></i>
+                                <i class="fas fa-trash fa-lg" style="color: red;cursor: pointer;" data-toggle="modal"
+                                    data-target="#deleteModal"></i>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> &nbsp;&nbsp;
+</div>
+
+<!-- Modal for Delete-->
+<div class="modal fade" id="deleteModal" role="dialog" data-backdrop="false">
+    <div class="modal-dialog modal-md">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div style="background-color: #D9D9D9;height: fit-content;">
+                <i type="button" class="close modalLabel fa fa-times-circle" data-dismiss="modal"></i>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center;margin-top: 20px;margin-bottom: 20px;">
+                    <h5>
+                        <i class="fa fa-exclamation-triangle fa-2x" style="color: #FFDB58;"></i>&nbsp;&nbsp; Are you
+                        sure you want to delete
+                        this
+                        book?
+                    </h5>
+                </div>
+                <div style="text-align: center;margin-top: 5px;margin-bottom: 5px;">
+                    <button type="button" class="btn update" style="width: 140px;" data-dismiss="modal"
+                        data-toggle="modal" data-target="#successModal">
+                        CONFIRM
+                    </button>
+                    <button type="button" class="btn normCancel" data-dismiss="modal" data-toggle="modal"
+                        data-target="#abortModal" style="margin-left:20px;width: 140px;"> CANCEL </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal FOR ABORT-->
+<div class="modal fade" id="abortModal" role="dialog" data-backdrop="false">
+    <div class="modal-dialog modal-md">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div style="background-color: #D9D9D9;height: fit-content;">
+          <i type="button" class="close modalLabel fa fa-times-circle" data-dismiss="modal"></i>
+        </div>
+        <div class="modal-body">
+          <div style="text-align: center;margin-top: 20px;margin-bottom: 20px;">
+            <h5>
+              <i class="fa fa-exclamation-triangle fa-2x" style="color: red;"></i>&nbsp;&nbsp; Delete Book has been
+              aborted.
+            </h5>
+          </div>
+          <div style="text-align: center;margin-top: 5px;margin-bottom: 5px;">
+            <button type="button" class="btn update" style="width: 140px;" data-dismiss="modal" [routerLink]="'/books'"> OKAY
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

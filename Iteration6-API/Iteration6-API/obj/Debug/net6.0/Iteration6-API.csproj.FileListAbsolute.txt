@@ -79,9 +79,13 @@ C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\b
 C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\Iteration6-API.runtimeconfig.json
 C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\Iteration6-API.dll
 C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\Iteration6-API.pdb
+C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\Azure.Core.dll
+C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\Azure.Storage.Blobs.dll
+C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\Azure.Storage.Common.dll
 C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\EntityFramework.SqlServer.dll
 C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\EntityFramework.dll
 C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\Humanizer.dll
+C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -107,6 +111,8 @@ C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\b
 C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
 C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\System.Drawing.Common.dll
 C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\System.IO.Hashing.dll
+C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\System.Memory.Data.dll
 C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\System.Runtime.Caching.dll
 C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Wisani\Documents\GitHub\Mock-Iteration6\Iteration6-API\Iteration6-API\bin\Debug\net6.0\System.Security.Permissions.dll

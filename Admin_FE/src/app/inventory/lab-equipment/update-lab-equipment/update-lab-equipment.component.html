@@ -1,0 +1,154 @@
+<div class="titlePage">
+  <h4> </h4>
+  <h4 style="font-weight: bold; padding-top: 5px;">
+    <a [routerLink]="'/lab_equipment'" style="text-decoration: black;">
+      <i class="far fa-arrow-alt-circle-left fa-lg" style="color: black;"></i>
+    </a>&nbsp;&nbsp;
+    <a [routerLink]="'/lab_equipment'" style="color: black;">
+      LAB EQUIPMENT
+    </a>
+    <i class="fas fa-angle-right fa-lg"></i> UPDATE LAB EQUIPMENT
+  </h4>
+</div>
+
+<div style="padding: 50px;">
+  <div class="row">
+    <div class="col-6 offset-1">
+      <form class="form-group" [formGroup]="formUpdate" (ngSubmit)="UpdateLabEquipment()" enctype="multipart/form-data">
+
+        <div class="mb-3">
+          <!--Name of the equipment-->
+          <label class="form-label" style="font-weight: bold;">Name</label>
+          <input type="email" class="form-control" placeholder="Lab coat" name="name" formControlName="name">
+        </div>
+
+        <!--Description of the equipment-->
+        <div class="mb-3">
+          <label class="form-label" style="font-weight: bold;">Description</label>
+          <textarea type="text" class="form-control" placeholder="Small size" name="Description"
+            formControlName="Description"></textarea>
+        </div>
+
+        <!--Amount-->
+        <div class="mb-3">
+          <label class="form-label" style="font-weight: bold;">Sale Amount</label>
+          <input type="number" class="form-control" placeholder="89.00" name="PriceAmount" formControlName="PriceAmount"
+            min="0" max="5000" step=".01">
+        </div>
+
+        <!--Module-->
+        <div class="mb-3">
+          <label class="form-label" style="font-weight: bold;">Module Codes</label>
+          <select class="select form-control" (change)="onOptionChange($event.target)">
+            <option name="Module" *ngFor="let m of Modules" value={{m.module_ID}}>{{m.module_Code}}</option>
+          </select>
+        </div>
+
+
+        <!--EquipmentType-->
+        <div class="mb-3">
+          <label class="form-label" style="font-weight: bold;">Equipment Type</label>
+          <select class="select form-control" (change)="onEquipmentType($event.target)">
+            <option *ngFor="let type of EquipmentTypes" name="EquipmentType" value={{type.equipmentType_ID}}>
+              {{type.name}}</option>
+          </select>
+        </div>
+
+        <!--Image-->
+        <div class="mb-3">
+          <label class="form-label" style="font-weight: bold;">Equipment Image</label>
+          <input type="file" class="form-control" name="Image" formControlName="Image">
+        </div>
+
+
+        <!--The buttons-->
+        <button type="submit" class="btn normButton" style="width: fit-content;" data-toggle="modal"
+        data-target="#updateModal">UPDATE
+          LAB EQUIPMENT</button>
+        <button type="button" class="btn normCancel" style="margin-left:20px;width: 140px;" data-toggle="modal"
+          data-target="#abortModal">CANCEL</button>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="updateModal" role="dialog" data-backdrop="false">
+          <div class="modal-dialog modal-md">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div style="background-color: #D9D9D9;height: fit-content;">
+                <i type="button" class="close modalLabel fa fa-times-circle" data-dismiss="modal"></i>
+              </div>
+              <div class="modal-body">
+                <div style="text-align: center;margin-top: 20px;margin-bottom: 20px;">
+                  <h5>
+                    <i class="fa fa-exclamation-triangle fa-2x" style="color: #FFDB58;"></i>&nbsp;&nbsp; Are you sure
+                    you want to update this lab equipment?
+                  </h5>
+                </div>
+                <div style="text-align: center;margin-top: 5px;margin-bottom: 5px;">
+                  <button type="button" class="btn update" style="width: 140px;" data-dismiss="modal"> CONFIRM
+                  </button>
+                  <button type="button" class="btn normCancel" data-dismiss="modal"
+                    style="margin-left:20px;width: 140px;" data-toggle="modal"
+                    data-target="#abortModal"> CANCEL </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+</div>
+
+ <!-- Modal Success-->
+<div class="modal fade" id="successModal" role="dialog" data-backdrop="false">
+  <div class="modal-dialog modal-md">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+          <div style="background-color: #D9D9D9;height: fit-content;">
+              <i type="button" class="close modalLabel fa fa-times-circle" data-dismiss="modal"></i>
+          </div>
+          <div class="modal-body">
+              <div style="text-align: center;margin-top: 20px;margin-bottom: 20px;">
+                  <h5>
+                      <i class="fa fa-check-circle" style="color: green;"></i>&nbsp;&nbsp; Lab Equipment has been updated in the
+                      system.
+                  </h5>
+              </div>
+              <div style="text-align: center;margin-top: 5px;margin-bottom: 5px;">
+                  <button type="button" class="btn update" style="width: 140px;" [routerLink]="'/lab_equipment'"> OKAY
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Modal FOR ABORT-->
+<div class="modal fade" id="abortModal" role="dialog" data-backdrop="false">
+  <div class="modal-dialog modal-md">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div style="background-color: #D9D9D9;height: fit-content;">
+        <i type="button" class="close modalLabel fa fa-times-circle" data-dismiss="modal"></i>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center;margin-top: 20px;margin-bottom: 20px;">
+          <h5>
+            <i class="fa fa-exclamation-triangle fa-2x" style="color: red;"></i>&nbsp;&nbsp; Update Lab Equipment has been
+            aborted.
+          </h5>
+        </div>
+        <div style="text-align: center;margin-top: 5px;margin-bottom: 5px;">
+          <button type="button" class="btn update" style="width: 140px;" [routerLink]="'/lab_equipment'"> OKAY
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

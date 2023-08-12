@@ -1,0 +1,43 @@
+<div class="titlePage">
+    <h4> </h4>
+    <h4 style="font-weight: bold; padding-top: 5px;">
+        &nbsp;
+        STOCK TAKE
+    </h4>
+</div>
+
+<div style="padding: 30px;">
+    <div class="row" style="display: flex; justify-content: flex-end;">
+        <small><i class="far fa-arrow-alt-circle-left" style="color: black;"></i></small>&nbsp; &nbsp;
+        <small [routerLink]="'/books'" style="cursor: pointer;">Books</small> &nbsp; &nbsp;
+        <small [routerLink]="'/lab_equipment'" style="cursor: pointer;">Lab Equipment</small>
+    </div>    
+    <div class="row">
+        <div class="col-6 offset-1">
+            <form class="form-group" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label class="form-label" style="font-weight: bold;">Current Quantity</label>
+                    <input type="number" class="form-control" placeholder="12" name="cqua" formControlName="cqua">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="font-weight: bold;">New Quantity</label>
+                    <input type="number" class="form-control" placeholder="34" name="nqua" formControlName="nqua">
+                </div>
+
+                <!--The buttons-->
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn normButton" style="width: fit-content;margin-bottom: 5px;">UPDATE
+                            QUANTITY</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn normCancel" style="width: fit-content;"
+                            data-toggle="modal" data-target="#abortModal" [routerLink]="'/inventory'">CANCEL</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

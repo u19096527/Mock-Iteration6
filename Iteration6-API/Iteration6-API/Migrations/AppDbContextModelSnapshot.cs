@@ -50,11 +50,11 @@ namespace Iteration6_API.Migrations
 
             modelBuilder.Entity("Iteration6_API.Models.Employee", b =>
                 {
-                    b.Property<int>("Student_ID")
+                    b.Property<int>("Employee_ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Student_ID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Employee_ID"), 1L, 1);
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
@@ -99,7 +99,7 @@ namespace Iteration6_API.Migrations
                     b.Property<int>("User_ID")
                         .HasColumnType("int");
 
-                    b.HasKey("Student_ID");
+                    b.HasKey("Employee_ID");
 
                     b.HasIndex("Employee_Type_ID");
 
@@ -148,7 +148,7 @@ namespace Iteration6_API.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("Employee_ID")
+                    b.Property<int?>("Employee_ID")
                         .HasColumnType("int");
 
                     b.Property<string>("FileName")
@@ -368,8 +368,7 @@ namespace Iteration6_API.Migrations
                     b.HasOne("Iteration6_API.Models.Employee", "Employees")
                         .WithMany("Help")
                         .HasForeignKey("Employee_ID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Employees");
                 });
