@@ -31,7 +31,7 @@ import { Employee } from '../shared/employee';
 })
 export class DataService {
 
-  apiUrl = 'https://localhost:7121/api/'
+  apiUrl = 'https://localhost:7022/api/'
 
   httpOptions ={
     headers: new HttpHeaders({
@@ -260,9 +260,7 @@ SearchVoucher(enteredQuery: string): Observable<any> {
   return this.httpClient.get<any>(`${this.apiUrl}Voucher/GetSearchedVouchers/${enteredQuery}`).pipe( map( result => result));
 }
 
-SearchStudent(enteredQuery: string): Observable<any> {
-  return this.httpClient.get<any>(`${this.apiUrl}Student/GetSearchedStudents/${enteredQuery}`).pipe( map( result => result));
-}
+
 
  //--------------------------------------- VAT-------------------------------------------------------------------------------------
  GetVAT(): Observable<any> {
@@ -290,6 +288,9 @@ DeleteStudent( student_ID: number){
 }
 GetSelectedStudent(student_ID: number){
   return this.httpClient.get(this.apiUrl + `Student/GetAStudent/${student_ID}`);
+}
+SearchStudent(enteredQuery: string): Observable<any> {
+  return this.httpClient.get<any>(`${this.apiUrl}Student/GetSearchedStudents/${enteredQuery}`).pipe( map( result => result));
 }
 
 //---------------------------------------------------Supplier-----------------------------------------------
@@ -518,7 +519,6 @@ GetSelectedStudent(student_ID: number){
   }
 
   AddABlob(model: HelpTip): Observable<any> {
-    //{ responseType: 'text' }
     return this.httpClient.post(this.apiUrl + 'BlobExplorer/Post', model );
   }
 
@@ -538,7 +538,7 @@ GetSelectedStudent(student_ID: number){
     return this.httpClient.get<any>(`${this.apiUrl}Help/GetSearchedHelpTip/${enteredQuery}`).pipe( map( result => result));
   }
 
-  // USER ROLES
+  //---------------------------------------User Roles------------------------------
   GetAllTheUserRoles(): Observable<any> {
     return this.httpClient.get(`${this.apiUrl}Help/GetAllUserRoles`).pipe( map( result => result) )
   }
