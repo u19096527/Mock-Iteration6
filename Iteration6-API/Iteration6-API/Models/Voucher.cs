@@ -10,8 +10,8 @@ namespace Iteration6_API.Models
         public string Voucher_Code { get; set; }
         [Required]
         public Decimal Percent { get; set; }
-        [Required, DataType(DataType.Date)]
-        public DateTime Expiry_Date { get; set; }
+        [Required, StringLength(10)]
+        public string Expiry_Date { get; set; }
 
     }
 }

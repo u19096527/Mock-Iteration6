@@ -22,8 +22,8 @@ namespace Iteration6_API.Models
         [Required]
         [MaxLengthAttribute]
         public string Physical_Address { get; set; }
-        [Required, DataType(DataType.Date)]
-        public DateTime BirthDate { get; set; }
+        [Required, StringLength(10)]
+        public string BirthDate { get; set; }
         [Required]
         [StringLength(100)]
         public string Emergency_Contact_Name { get; set; }

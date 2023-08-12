@@ -14,19 +14,19 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-2" style="text-align: right;"><strong>Title: </strong> </div>
-            <div class="col-sm-6"> {{selectedHelpTip.Name}}</div>
+            <div class="col-sm-6"> {{selectedHelpTip.name}}</div>
           </div>
           <div class="row">
               <div class="col-sm-2" style="text-align: right;"><strong>Date: </strong> </div>
-              <div class="col-sm-6"> {{selectedHelpTip.Date}}</div>
+              <div class="col-sm-6"> {{selectedHelpTip.date}}</div>
           </div>
           <div class="row">
               <div class="col-sm-2" style="text-align: right;"><strong>Description: </strong></div>
-              <div class="col-sm-6"> {{selectedHelpTip.Description}}</div>
+              <div class="col-sm-6"> {{selectedHelpTip.description}}</div>
           </div>
           <div class="row">
             <div class="video-container">
-              <iframe [src]="getVideoUrl()" frameborder="0" allowfullscreen></iframe>
+              <!-- <iframe [src]="getVideoUrl()" frameborder="0" allowfullscreen></iframe> -->
             </div>   
           </div>
           <button type="button" class="btn normButton" style="width: 140px;" [routerLink]="['/help-tips']">

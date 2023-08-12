@@ -511,10 +511,10 @@ SearchStudent(enteredQuery: string): Observable<any> {
 
   //---------------------------------------------------------------------Help Tips------------------------------
   GetAllTheHelpTips(): Observable<any> {
-    return this.httpClient.get(`${this.apiUrl}Help/GetAllHelpTips`).pipe( map( result => result) )
+    return this.httpClient.get(this.apiUrl + `Help/GetAllHelpTips`).pipe( map( result => result) )
   }
 
-  AddNewHelpTip(newHelpTip: HelpTip) {
+  AddNewHelpTip(newHelpTip: FormData) {
     return this.httpClient.post(this.apiUrl + `Help/AddHelpTip`, newHelpTip);
   }
 

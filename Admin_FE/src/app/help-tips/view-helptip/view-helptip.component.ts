@@ -28,24 +28,6 @@ export class ViewHelptipComponent {
     })
   }
 
-  videoUrl!: SafeResourceUrl;
-
-  getYouTubeVideoId(url: string): string {
-    const regex = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/|y2u\.be\/)([a-zA-Z0-9_-]{11})/;
-    const match = url.match(regex);
-    return match ? match[1] || '' : '';
-    }
-
-  getVideoUrl(): SafeResourceUrl {
-    const videoId = this.getYouTubeVideoId(this.selectedHelpTip.Video);
-    if (videoId) {
-      const url = `https://www.youtube.com/embed/${videoId}`;
-      return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-    } else {
-      // Handle invalid video URL or error
-      return this.sanitizer.bypassSecurityTrustResourceUrl(''); // Or set a default video URL
-    }
-  }
-  
+  videoUrl!: SafeResourceUrl;  
 
 }

@@ -25,6 +25,7 @@ export class HelpTipsComponent implements OnInit {
       let listHelpTips: any[] = result;
       listHelpTips.forEach( (element) => {
         this.arrHelpTips.push(element);
+        console.log(this.arrHelpTips)
       });
     });
   }

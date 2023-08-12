@@ -1,6 +1,8 @@
 using Azure.Storage.Blobs;
 using Iteration6_API.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http.Features;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,8 +26,6 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(
 
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
-//builder.Services.AddScoped<IHelpRepository, HelpTipRepository>();
-//builder.Services.AddScoped<IBlobRepository, BlobRepository>();
 builder.Services.AddScoped<IHelpRepository, HelpRepository>();
 builder.Services.AddScoped<IBlobRepository, BlobRepository>();
 
@@ -36,6 +36,14 @@ builder.Services.AddDbContext<AppDbContext>( options =>
 );
 
 var app = builder.Build();
+
+app.UseCors(builder =>
+{
+    builder.WithOrigins("http://localhost:4200")
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+});
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -93,7 +93,10 @@ namespace Iteration6_API.Controllers
 
                 //if file is empty notify user that no file is uploaded
                 if (file == null || file.Length == 0)
+                {
                     return BadRequest("No file uploaded.");
+
+                }
 
                 //if help tip video with same file name exists then notify user that it exists
                 var existingHelpTip = await _helpTipRepository.GetABlobFile(file.FileName);
@@ -129,7 +132,7 @@ namespace Iteration6_API.Controllers
                         {
                             Name = htViewModel.Name,
                             Description = htViewModel.Description,
-                            Date = Convert.ToDateTime(htViewModel.Date),
+                            Date = DateTime.Now.ToString("dd/MM/yyyy"),
                             FilePath = filePath,
                             FileName = fileName,
                             Employee_ID = 5,
@@ -167,7 +170,7 @@ namespace Iteration6_API.Controllers
 
                 existingHelpTip.Name = helpTipModel.Name;
                 existingHelpTip.Description = helpTipModel.Description;
-                existingHelpTip.Date = Convert.ToDateTime(helpTipModel.Date);
+                existingHelpTip.Date = DateTime.Now.ToString("dd/MM/yyyy");
                 existingHelpTip.FileName = helpTipModel.FileName;
 
                 if (await _helpTipRepository.SaveChangesAsync())
