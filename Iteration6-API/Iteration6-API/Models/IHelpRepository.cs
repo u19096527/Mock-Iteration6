@@ -15,7 +15,8 @@
 
         Task<BlobObject> GetBlobFile(string name);
         Task<BlobObject> GetABlobFile(string fileName);
-        Task<string> UploadBlobFile(string filePath, string filename);
+        Task<string> UploadBlobFile(string fileName, byte[] fileData);
+
         void DeleteBlob(string name);
         Task<List<string>> ListBlobs();
     }

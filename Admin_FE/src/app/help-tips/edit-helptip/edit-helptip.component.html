@@ -3,7 +3,7 @@
     <h4 style="font-weight: bold; padding-top: 5px;"  [routerLink]="'/help-tips'" style="color: black;">
         HELP TIPS
        &nbsp; >> &nbsp;
-      ADD NEW HELP TIP
+      EDIT NEW HELP TIP
     </h4>
   </div>
   
@@ -11,42 +11,170 @@
     <div class="row">
       <div class="col-6 offset-1">
         <form class="form-group" [formGroup]="formEditHelpTip" (ngSubmit)="editAHelpTip()">
+          <!-- ------------------------NAME--------------------------------------------- -->
           <div class="mb-3">
             <label class="form-label" style="font-weight: bold;"> Name </label>
             <input type="text" class="form-control" name="name" formControlName="name">
           </div>
+          <!-- ------------------------DESCRIPTION--------------------------------------------- -->
           <div class="mb-6">
             <label class="form-label" style="font-weight: bold;"> Description </label>
             <textarea class="form-control" name="description" formControlName="description" style="height: 200px;"></textarea>
           </div>
-          <div class="mb-3">
-            <label class="form-label" style="font-weight: bold;"> Date </label>
-            <input id="datePicker" type="date" class="form-control" name="date" formControlName="date">
-          </div>
-          <div class="mb-3">
-            <label class="form-label" style="font-weight: bold;"> Video </label>
-            <input id="video" type="text" class="form-control" name="video" formControlName="video">
-          </div>
-  
-          <button (click)="displayVideo()" type="button" class="btn normButton" style="width: 140px;">
-            VERIFY VIDEO
-          </button>
-        </form>
-        <div *ngIf="showVideo"> 
-          <p style="text-align: center;"> Please confirm if the video below is what you want to upload </p>
-          <div class="video-container">
-            <iframe [src]="videoUrl" frameborder="0" allowfullscreen></iframe>
-          </div>
           <br>
-          <button type="button" class="btn normButton" style="width: 150px;" (click)="editAHelpTip()">
-            EDIT HELP VIDEO
+          <!-------------------------VIDEO--------------------------------------------- -->
+          <div *ngIf="linkGenerated" class="mb-6">
+            <mat-card class="video-card">
+              <mat-card-content>
+                <video controls width="300" height="150" frameborder="0" allowfullscreen>
+                  <source src={{videoUrl}} type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <div id="confirmButtons" class="confirmButtons" [hidden]="ConfirmButtonsHidden">
+                  <p>
+                    <strong> Click below if you would like to change the video</strong> 
+                  </p>  
+                  <button type="button" class="btn btnYes" style="width: 200px;" (click)="YesChangeVideo()">
+                    CHANGE VIDEO
+                  </button>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        <!------------------------------------------------- VIDEO UPLOAD ------------------------------------------------------------------------------>
+        <div *ngIf="!linkGenerated" class="mb-3">
+            <label class="form-label" style="font-weight: bold;"> Video </label>
+            <input class="upload" id='videoInput' type="file" class="form-control" name="video" formControlName="video" accept="video/mp4" (change)="handleVideoUpload($event)">
+            <div *ngIf="formEditHelpTip.controls['video']?.invalid && !linkGenerated" class="text-danger">
+              Video is required.
+            </div>
+            <br>
+        </div>
+
+            <!-- if there are any video error show this message -->
+            <div *ngIf="showErrorMessage">
+              <br>
+              <mat-card class="error-card">
+                <mat-card-header>
+                  ERROR
+                </mat-card-header>
+                <mat-card-content>
+                  <p>
+                    <strong> {{fileUploadMessage}}</strong> 
+                  </p>
+                </mat-card-content>
+              </mat-card>
+      
+            </div>
+      
+      <!-- if the right video is uploaded then show add help tip options -->
+      <div>
+        <br>
+        <button type="button" class="btn normButton" style="width: 140px;" (click)="ConfirmEditHelp()">
+        EDIT HELP TIP
+      </button>
+      <button type="button" class="btn normCancel" style="margin-left:20px;width: 140px;" (click)="AbortEditHelp()">
+        CANCEL
+      </button>
+
+        <div class="modal fade" id="addModal" role="dialog" data-backdrop="false">
+          <div class="modal-dialog modal-md">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div style="background-color: #D9D9D9;height: fit-content;">
+                <i type="button" class="close modalLabel fa fa-times-circle" data-dismiss="modal"></i>
+              </div>
+              <div class="modal-body">
+                <div style="text-align: center;margin-top: 20px;margin-bottom: 20px;">
+                  <h5>
+                    <i class="fa fa-exclamation-triangle fa-2x" style="color: #FFDB58;"></i>&nbsp;&nbsp; Are you sure
+                    you want to edit this help tip?
+                  </h5>
+                </div>
+                <div style="text-align: center;margin-top: 5px;margin-bottom: 5px;">
+                  <button type="button" class="btn update" style="width: 140px;" data-dismiss="modal"
+                    data-toggle="modal" data-target="#successModal" (click)="editAHelpTip()"> CONFIRM
+                  </button>
+                  <button type="button" class="btn normCancel" data-dismiss="modal" data-toggle="modal" data-target="abortModal"
+                    style="margin-left:20px;width: 140px;"> CANCEL </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- if no video is uploaded and verify is clicked then show this error message -->
+      <div *ngIf="showNoVideoMessage">
+        <br>
+        <mat-card class="error-card">
+          <mat-card-header>
+            ERROR
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              <strong> {{fileUploadMessage}}</strong> 
+            </p>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+    </form>
+
+    </div>
+
+    </div>
+    </div>
+
+    <!-- Modal FOR ABORT-->
+    <div class="modal fade" id="abortModal" role="dialog" data-backdrop="false">
+    <div class="modal-dialog modal-md">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div style="background-color: #D9D9D9;height: fit-content;">
+        <i type="button" class="close modalLabel fa fa-times-circle" data-dismiss="modal"></i>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center;margin-top: 20px;margin-bottom: 20px;">
+          <h5>
+            <i class="fa fa-exclamation-triangle fa-2x" style="color: red;"></i>&nbsp;&nbsp; Edit Help Tip has been
+            aborted.
+          </h5>
+        </div>
+        <div style="text-align: center;margin-top: 5px;margin-bottom: 5px;">
+          <button type="button" class="btn update" style="width: 140px;" [routerLink]="'/help-tips'"> OKAY
           </button>
-          <button type="button" class="btn normCancel" style="margin-left:20px;width: 140px;">
-            CANCEL
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+
+    <!-- Modal FOR success-->
+    <div class="modal fade" id="successModal" role="dialog" data-backdrop="false">
+    <div class="modal-dialog modal-md">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div style="background-color: #D9D9D9;height: fit-content;">
+        <i type="button" class="close modalLabel fa fa-times-circle" data-dismiss="modal"></i>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center;margin-top: 20px;margin-bottom: 20px;">
+          <h5>
+            <i class="fa fa-check-circle" style="color: green;"></i>&nbsp;&nbsp; Help tip has been edited successfully.
+          </h5>
+        </div>
+        <div style="text-align: center;margin-top: 5px;margin-bottom: 5px;">
+          <button type="button" class="btn update" style="width: 140px;" [routerLink]="'/help-tips'"> OKAY
           </button>
-  
         </div>
       </div>
     </div>
   </div>
-  
+</div>

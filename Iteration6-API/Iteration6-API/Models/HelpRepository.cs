@@ -114,16 +114,26 @@ namespace Iteration6_API.Models
             }
         }
 
-
-            public async Task<string> UploadBlobFile(string filePath, string filename)
+            public async Task<string> UploadBlobFile(string fileName, byte[] fileData)
             {
-                var blobClient = client.GetBlobClient(filename);
-                var status = await blobClient.UploadAsync(filePath);
+                // Check if the file data is empty
+                if (fileData == null || fileData.Length == 0)
+                    throw new ArgumentException("File data is empty.");
 
-                //this returns a string of where exactly your file is stored
+                // Check if the file is a video
+                var fileExtension = Path.GetExtension(fileName).ToUpperInvariant();
+                if (!VideoExtensions.Contains(fileExtension))
+                    throw new ArgumentException("Only video files are allowed.");
+
+                // Upload the video file to Blob storage
+                var blobClient = client.GetBlobClient(fileName);
+                var status = await blobClient.UploadAsync(new MemoryStream(fileData));
+
+                // This returns a string of where exactly your file is stored
                 return blobClient.Uri.AbsoluteUri;
             }
-            public async void DeleteBlob(string path)
+
+        public async void DeleteBlob(string path)
             {
                 var fileName = new Uri(path).Segments.LastOrDefault();
                 var blobClient = client.GetBlobClient(fileName);

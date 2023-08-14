@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 
@@ -26,6 +27,7 @@ namespace Iteration6_API.Models
         public User Users { get; set; }
 
         // Link to newsletter
+        [JsonIgnore]
         public List<Newsletter> Newsletters { get; set; }
 
 

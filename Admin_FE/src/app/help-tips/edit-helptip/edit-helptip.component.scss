@@ -77,3 +77,45 @@
     flex-direction: row;
     gap: 10px; 
   }
+
+.btnYes {
+  background-color: green;
+  color: white;
+  font-weight: bold;
+}
+
+.btnNo {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+}
+
+.error-card mat-card-header {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+}
+
+.error-card {
+  border-color: black;
+  border-width: 2px;
+}
+
+.video-card {
+  border-color: black;
+  border-width: 2px;
+}
+
+input[type="file"] {
+position: relative;
+}
+
+/* file upload button hover state */
+input[type="file"]::file-selector-button:hover {
+background-color: #AE7595;
+}
+
+/* file upload button active state */
+input[type="file"]::file-selector-button:active {
+background-color: #50294A;
+}

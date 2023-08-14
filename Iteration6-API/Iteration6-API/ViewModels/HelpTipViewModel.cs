@@ -7,7 +7,7 @@
         public string? Date { get; set; } = string.Empty;
         public string? FilePath { get; set; } = string.Empty;
         public string? FileName { get; set; } = string.Empty;
-        public IFormFile VideoFile { get; set; }
+        public IFormFile? VideoFile { get; set; }
 
         public HelpTipViewModel(string name, string description, string date, string video, string filePath, string fileName, IFormFile videoFile)
         {

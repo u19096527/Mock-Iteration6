@@ -7,5 +7,8 @@
         void DeleteBlob(string name);
         Task<List<string>> ListBlobs();
         Task<string> UploadBlobFile(string fileName, byte[] fileData);
+        Task<string> GenerateBlobStreamLinkAsync(string fileName);
+        Task<string> UploadNewsletterBlob(string fileName, byte[] fileData);
+
     }
 }

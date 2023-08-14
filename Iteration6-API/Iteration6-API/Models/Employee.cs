@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Iteration6_API.Models
@@ -47,6 +48,7 @@ namespace Iteration6_API.Models
         public List<AuditTrail> AuditTrail { get; set; }
 
         //link to newsletter 
+        [JsonIgnore]
         public List<Newsletter> Newsletters { get; set; }
     }
 }

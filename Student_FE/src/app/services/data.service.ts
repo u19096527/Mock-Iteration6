@@ -25,7 +25,7 @@ import { ShoppingCart, ShoppingCartBook, ShoppingCartEquipment } from '../shared
 })
 export class DataService {
 
-  apiUrl = 'https://localhost:7121/api/'
+  apiUrl = 'https://localhost:7022/api/'
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -518,5 +518,34 @@ export class DataService {
 
   ClearCart(shoppingCart_ID: Number) {
     return this.httpClient.get(this.apiUrl + `ShoppingCart/ClearShoppingCart/${shoppingCart_ID}`);
+  }
+
+  //----------------------------------------HELP TIPS--------------------------------------------------
+  GetAllTheHelpTips(): Observable<any> {
+    return this.httpClient.get(this.apiUrl + `Help/GetAllHelpTips`).pipe( map( result => result) )
+  }
+
+  AddNewHelpTip(newHelpTip: FormData) {
+    return this.httpClient.post(this.apiUrl + `Help/AddHelpTip`, newHelpTip);
+  }
+
+  GenerateVideoStreamLink(fileName: string): Observable<string> {
+    return this.httpClient.get(this.apiUrl + `Help/GenerateBlobStreamLink/${fileName}`, { responseType: 'text' });
+}
+
+  UpdateAHelpTip(Help_ID: number, updatedHelpTip: FormData){
+    return this.httpClient.put(this.apiUrl + `Help/EditHelpTip/${Help_ID}`, updatedHelpTip);
+  }
+
+  DeleteHelpTip( Help_ID: number){
+    return this.httpClient.delete(this.apiUrl + `Help/DeleteHelpTip/${Help_ID}`);
+  }
+
+  GetSelectedHelpTip(Help_ID: number){
+    return this.httpClient.get(this.apiUrl + `Help/GetAHelpTip/${Help_ID}`);
+  }
+
+  SearchHelpTips(enteredQuery: string): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}Help/GetSearchedHelpTip/${enteredQuery}`).pipe( map( result => result));
   }
 }

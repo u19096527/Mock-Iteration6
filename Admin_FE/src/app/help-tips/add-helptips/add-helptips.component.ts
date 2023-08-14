@@ -47,7 +47,6 @@ ngOnInit(): void {
 }
 
 handleVideoUpload(event: Event) {
-  console.log(this.formAddHelpTip.value.date);
   //get the video from event handler
   this.selectedFile = (event.target as HTMLInputElement).files?.[0];
 
@@ -74,7 +73,21 @@ handleVideoUpload(event: Event) {
 
 //-----------------------VERIFICATION FOR VIDEO BEING UPLOADED-----------------------//
   VerifyVideo() {
-    //if video is not uploaded when verify video is clicked then...
+
+    if(!this.formAddHelpTip.valid)
+    {
+      //trigger your form controls
+      Object.values(this.formAddHelpTip.controls).forEach(control => {
+        if(control.invalid)
+        {
+          control.markAsDirty();
+          control.updateValueAndValidity({onlySelf: true});
+        }
+      });
+    }else
+    {
+
+          //if video is not uploaded when verify video is clicked then...
     if (this.isVideoUploaded == false) {
       this.showVideo = false;
       this.showNoVideoMessage = true;
@@ -84,14 +97,27 @@ handleVideoUpload(event: Event) {
       this.fileUploadMessage = "It looks you haven't uploaded a video, please upload a video.";
     }
     else {
-      this.showVideo = true;
-      this.showNoVideoMessage = false;
-      this.ConfirmButtonsHidden = false;
 
-      this.isWrongVideoUploaded = false;
-      this.isTheRightVideoUploaded = false;
+      if(this.selectedFile.size > 30000000 ){
 
+        this.showVideo = false;
+        this.showNoVideoMessage = true;
+        this.isWrongVideoUploaded = false;
+        this.isTheRightVideoUploaded = false;
+    
+        this.fileUploadMessage = " It looks like the file you uploaded is a bit too large. Please make sure the file size is smaller than 30MB.";
+     }
+     else{
+      this.showVideo = true;//shows the video
+      this.showNoVideoMessage = false; //hides no video error message
+      this.ConfirmButtonsHidden = false; //hides the confirm video buttons
+      this.isWrongVideoUploaded = false;//hides the wrong video uploaded message
+      this.isTheRightVideoUploaded = false;//hides the right video uploaded message
+
+     }
     }
+    }
+
     
 
   }
@@ -146,7 +172,11 @@ handleVideoUpload(event: Event) {
 
           // this.auditService.addAction(new auditEntry(1,auditEntryType.UploadedVideo,"Uploaded Video named " + this.formAddHelpTip.controls["Name"].value));
           // this.saveActions()
-          
+        },
+        error => {
+          // Handle error here
+          console.error('Error adding new help tip:', error);
+          // You can show an error message to the user or perform other actions
         }
       );
     }

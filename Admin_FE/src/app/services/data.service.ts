@@ -518,11 +518,11 @@ SearchStudent(enteredQuery: string): Observable<any> {
     return this.httpClient.post(this.apiUrl + `Help/AddHelpTip`, newHelpTip);
   }
 
-  AddABlob(model: HelpTip): Observable<any> {
-    return this.httpClient.post(this.apiUrl + 'BlobExplorer/Post', model );
-  }
+  GenerateVideoStreamLink(fileName: string): Observable<string> {
+    return this.httpClient.get(this.apiUrl + `Help/GenerateBlobStreamLink/${fileName}`, { responseType: 'text' });
+}
 
-  UpdateAHelpTip(Help_ID: number, updatedHelpTip: HelpTip){
+  UpdateAHelpTip(Help_ID: number, updatedHelpTip: FormData){
     return this.httpClient.put(this.apiUrl + `Help/EditHelpTip/${Help_ID}`, updatedHelpTip);
   }
 

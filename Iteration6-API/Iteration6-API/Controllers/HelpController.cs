@@ -79,6 +79,23 @@ namespace Iteration6_API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GenerateBlobStreamLink/{fileName}")]
+        public async Task<IActionResult> GenerateBlobStreamLink(string fileName)
+        {
+
+            try
+            {
+                string blobStreamLink = await _blobRepository.GenerateBlobStreamLinkAsync(fileName);
+                return Content(blobStreamLink, "text/plain");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error generating stream link: {ex.Message}");
+            }
+
+        }
+
 
         // Adds a new help tip
         [HttpPost]
@@ -97,55 +114,59 @@ namespace Iteration6_API.Controllers
                     return BadRequest("No file uploaded.");
 
                 }
-
-                //if help tip video with same file name exists then notify user that it exists
-                var existingHelpTip = await _helpTipRepository.GetABlobFile(file.FileName);
-                if (existingHelpTip != null)
-                {
-                    return BadRequest($"Help tip already exists");
-                }
                 else
                 {
-                    //if file is not empty then process video and add new help tip
-                    if (file != null && file.Length > 0)
+                    //if help tip video with same file name exists then notify user that it exists
+                    var existingHelpBlob = await _helpTipRepository.GetABlobFile(file.FileName);
+                    if (existingHelpBlob != null)
                     {
-                        byte[] fileData;
-                        using (var memoryStream = new MemoryStream())
-                        {
-                            await file.CopyToAsync(memoryStream);
-                            fileData = memoryStream.ToArray();
-                        }
-
-                        //string containerName = "blobcontainerhelptip";
-                        string sanitizedFileName = Path.GetFileNameWithoutExtension(fileName)
-                        .Replace(" ", "_")
-                        .Replace("-", "_") // Replace hyphens with underscores if needed
-                        .Replace("...", "_") // Replace multiple dots with a single underscore if needed
-                        + Path.GetExtension(fileName);
-
-                        fileName = sanitizedFileName;
-                        // Upload the video file to Blob storage using the BlobRepository
-                        string blobUrl = await _blobRepository.UploadBlobFile(fileName, fileData);
-                        var filePath = blobUrl;
-
-                        var helpTip = new Help
-                        {
-                            Name = htViewModel.Name,
-                            Description = htViewModel.Description,
-                            Date = DateTime.Now.ToString("dd/MM/yyyy"),
-                            FilePath = filePath,
-                            FileName = fileName,
-                            Employee_ID = 5,
-                        };
-
-                        _helpTipRepository.Add(helpTip);
-                        await _helpTipRepository.SaveChangesAsync();
-
-                        return Ok(helpTip);
+                        return BadRequest($"Help tip already exists");
                     }
-                    // Perform your desired logic with the received data
-                    return Ok("Data received successfully!");
+                    else
+                    {
+                        //if file is not empty then process video and add new help tip
+                        if (file != null && file.Length > 0)
+                        {
+                            byte[] fileData;
+                            using (var memoryStream = new MemoryStream())
+                            {
+                                await file.CopyToAsync(memoryStream);
+                                fileData = memoryStream.ToArray();
+                            }
+
+                            //renaming video to a sanitzed video name that doesnt cause error when adding to azure
+                            string sanitizedFileName = Path.GetFileNameWithoutExtension(fileName)
+                            .Replace(" ", "_")
+                            .Replace("-", "_") // Replace hyphens with underscores if needed
+                            .Replace("...", "_") // Replace multiple dots with a single underscore if needed
+                            + Path.GetExtension(fileName);
+
+                            fileName = sanitizedFileName;
+                            // Upload the video file to Blob storage using the BlobRepository
+                            string blobUrl = await _helpTipRepository.UploadBlobFile(fileName, fileData);
+                            var filePath = blobUrl;
+
+                            var helpTip = new Help
+                            {
+                                Name = htViewModel.Name,
+                                Description = htViewModel.Description,
+                                Date = DateTime.Now.ToString("dd-MM-yyyy"),
+                                FilePath = filePath,
+                                FileName = fileName,
+                                Employee_ID = 5,
+                            };
+
+                            _helpTipRepository.Add(helpTip);
+                            await _helpTipRepository.SaveChangesAsync();
+
+                            return Ok(helpTip);
+                        }
+                        // Perform your desired logic with the received data
+                        return Ok("Data received successfully!");
+                    }
+
                 }
+
 
             }
             catch (Exception ex)
@@ -157,12 +178,12 @@ namespace Iteration6_API.Controllers
 
         // Edits details of a helpTip
         [HttpPut]
-        [Route("EditHelpTip/{helpid}")]
-        public async Task<ActionResult<HelpTipViewModel>> EditHelpTip(int helpId, HelpTipViewModel helpTipModel)
+        [Route("EditHelpTip/{HelpID}")]
+        public async Task<ActionResult<HelpTipViewModel>> EditHelpTip(int HelpID, [FromForm] HelpTipViewModel helpTipModel)
         {
             try
             {
-                var existingHelpTip = await _helpTipRepository.GetAHelpTipAsync(helpId);
+                var existingHelpTip = await _helpTipRepository.GetAHelpTipAsync(HelpID);
                 if (existingHelpTip == null)
                 {
                     return NotFound($"The help tip does not exist");
@@ -170,8 +191,39 @@ namespace Iteration6_API.Controllers
 
                 existingHelpTip.Name = helpTipModel.Name;
                 existingHelpTip.Description = helpTipModel.Description;
-                existingHelpTip.Date = DateTime.Now.ToString("dd/MM/yyyy");
-                existingHelpTip.FileName = helpTipModel.FileName;
+                existingHelpTip.Date = DateTime.Now.ToString("dd-MM-yyyy");
+
+
+                //if new video is uploaded
+                var file = helpTipModel.VideoFile;
+                if (file != null && file.Length > 0)
+                {
+                    _blobRepository.DeleteBlob(existingHelpTip.FileName);
+                    //sanitize the file name
+                    string sanitizedFileName = Path.GetFileNameWithoutExtension(file.FileName)
+                        .Replace(" ", "_")
+                        .Replace("-", "_") // Replace hyphens with underscores if needed
+                        .Replace("...", "_") // Replace multiple dots with a single underscore if needed
+                        + Path.GetExtension(file.FileName);
+
+                    //convert video to file data
+                    byte[] fileData;
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await file.CopyToAsync(memoryStream);
+                        fileData = memoryStream.ToArray();
+                    }
+                    //assign sanitized file name
+                    string fileName = sanitizedFileName;
+                    // Upload the video file to Blob storage using the BlobRepository
+                    string blobUrl = await _blobRepository.UploadBlobFile(fileName, fileData);
+                    //assign the videoURL
+                    var filePath = blobUrl;
+
+                    //then change the fileName and filePath
+                    existingHelpTip.FileName = fileName;
+                    existingHelpTip.FilePath = filePath;
+                }
 
                 if (await _helpTipRepository.SaveChangesAsync())
                 {
@@ -187,12 +239,12 @@ namespace Iteration6_API.Controllers
 
         // Deletes a helpTip
         [HttpDelete]
-        [Route("DeleteHelpTip/{helpId}")]
-        public async Task<IActionResult> DeleteHelpTip(int helpId)
+        [Route("DeleteHelpTip/{HelpID}")]
+        public async Task<IActionResult> DeleteHelpTip(int HelpID)
         {
             try
             {
-                var existingHelpTip = await _helpTipRepository.GetAHelpTipAsync(helpId);
+                var existingHelpTip = await _helpTipRepository.GetAHelpTipAsync(HelpID);
                 if (existingHelpTip == null)
                 {
                     return NotFound($"The help tip does not exist");

@@ -186,15 +186,17 @@ namespace Iteration6_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Newsletter_ID"), 1L, 1);
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Employee_ID")
+                    b.Property<int?>("Employee_ID")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("FileName")
@@ -205,7 +207,8 @@ namespace Iteration6_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Student_ID")
+                    b.Property<int?>("Student_ID")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Subject")
