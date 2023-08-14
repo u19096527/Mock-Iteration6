@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Voucher } from 'src/app/shared/voucher';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-voucher',
@@ -57,9 +58,6 @@ export class EditVoucherComponent {
           this.strMonth = month.toString();
         }
         this.minimumDate = year.toString() +"-"+ this.strMonth+"-"+ this.strDay;
-        console.log(this.minimumDate);
-        console.log(this.strDay);
-        console.log(day.toString());
       })
 
 
@@ -68,41 +66,82 @@ export class EditVoucherComponent {
 
   }
 
+  AbortEditVoucher(){
+    Swal.fire({
+      icon: 'error',
+      text: 'Edit Voucher has been aborted.',
+    }).then( (answer) =>{
+      if ( (answer.isConfirmed) || (answer.isDismissed) )
+      {
+        this.router.navigate(['/vouchers'])
+      }
+    });
+  }
+
+  ConfirmEditVoucher() {
+    Swal.fire({
+      title: 'Do you want to save the changes made to this voucher?',
+      showConfirmButton: true,
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) //if user clicked yes
+      {
+        this.editAVoucher();
+      } else if ( (result.isDenied) || (result.isDismissed))//if user clicked no
+      {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
+  }
+
+
+
   editAVoucher()
   {
-    this.strDay = "";
-    this.strMonth = "";
-    //retrieving selected date and converting it to the string format of the DB
-    const dateString = this.formEditVoucher.value.expiry_Date;
-    const dateObject = new Date(dateString);
-    const year = dateObject.getFullYear();
-    const month = dateObject.getMonth() + 1;
-    const day = dateObject.getDate();
-    if (day < 10){
-      this.strDay = "0"+ day.toString();
+    if (this.formEditVoucher.controls['expiry_Date']?.invalid) 
+    {
+      Swal.fire('Please fill in the form','','warning')
     }
     else {
-      this.strDay = day.toString()
-    };
-
-    if (month < 10) {
-      this.strMonth = "0"+ month.toString();
+      this.strDay = "";
+      this.strMonth = "";
+      //retrieving selected date and converting it to the string format of the DB
+      const dateString = this.formEditVoucher.value.expiry_Date;
+      const dateObject = new Date(dateString);
+      const year = dateObject.getFullYear();
+      const month = dateObject.getMonth() + 1;
+      const day = dateObject.getDate();
+      if (day < 10){
+        this.strDay = "0"+ day.toString();
+      }
+      else {
+        this.strDay = day.toString()
+      };
+  
+      if (month < 10) {
+        this.strMonth = "0"+ month.toString();
+      }
+      else {
+        this.strMonth = month.toString();
+      }
+  
+      this.newDate = this.strDay +"-"+ this.strMonth +"-"+ year.toString();
+  
+  
+      let editedVoucher = new Voucher();
+      editedVoucher.percent = this.originalVoucher.percent;
+      editedVoucher.expiry_Date = this.newDate; 
+  
+     this.dataService.UpdateAVoucher(this.originalVoucher.voucher_ID, editedVoucher).subscribe((response:any) => {
+        this.router.navigate(['/vouchers'])
+  
+     });
+  
+  
     }
-    else {
-      this.strMonth = month.toString();
-    }
 
-    this.newDate = this.strDay +"-"+ this.strMonth +"-"+ year.toString();
-
-
-    let editedVoucher = new Voucher();
-    editedVoucher.percent = this.originalVoucher.percent;
-    editedVoucher.expiry_Date = this.newDate; 
-
-   this.dataService.UpdateAVoucher(this.originalVoucher.voucher_ID, editedVoucher).subscribe((response:any) => {
-      this.router.navigate(['/vouchers'])
-
-   });
 
   }
 

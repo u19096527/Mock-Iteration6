@@ -25,7 +25,6 @@ export class VouchersComponent  implements OnInit {
         let listVouchers: any[] = result
         listVouchers.forEach((element) => {
           this.arrVouchers.push(element)
-          console.log(this.arrVouchers)
         });
       })
     }
@@ -74,24 +73,31 @@ export class VouchersComponent  implements OnInit {
 
     goToEditVoucher(voucher_ID: Number) {
       this.router.navigate(['/edit-voucher', voucher_ID]);
-    }
+    }  
 
     deleteVoucher(voucher_ID: number){
-      this.dataService.DeleteVoucher(voucher_ID).subscribe( (response:any) => {
-        window.location.reload();
+
+      Swal.fire({
+        title: 'Are you sure you want to delete this voucher?',
+        showConfirmButton: true,
+        showDenyButton: true,
+        confirmButtonColor: "green",
+        confirmButtonText: 'Yes',
+        denyButtonText: 'No'
+      }).then((result) => {
+        if (result.isConfirmed) //if user clicked yes
+        {
+          this.dataService.DeleteVoucher(voucher_ID).subscribe( (response:any) => {
+            window.location.reload();
+          })        
+        } else if ( (result.isDenied) || (result.isDismissed))//if user clicked no
+        {
+          Swal.fire('Delete Voucher has been aborted', '', 'error')
+        }
       })
-    }
 
 
-  // search() {
-  //   this.http.get<any[]>('your-api-url/search?term=' + this.searchTerm)
-  //     .subscribe((response: Voucher[]) => {
-  //       this.arrVouchers = response;
-  //     });
-  // }
-
-  
-  
+    }  
 
 
 }

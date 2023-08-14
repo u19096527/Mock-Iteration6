@@ -80,7 +80,8 @@ this.linkGenerated = false;
       icon: 'error',
       text: 'Edit Help Tip has been aborted.',
     }).then( (answer) =>{
-      if (answer.isConfirmed) {
+      if ( (answer.isConfirmed) || (answer.isDismissed) )
+      {
         this.router.navigate(['/help-tips'])
       }
     });
@@ -97,7 +98,8 @@ this.linkGenerated = false;
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         this.editAHelpTip();
-      } else if (result.isDenied) {
+      } else if (result.isDenied) 
+      {
         Swal.fire('Changes are not saved', '', 'info')
       }
     })
