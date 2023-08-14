@@ -3,6 +3,7 @@ import { Voucher } from '../shared/voucher';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
 import { FormsModule, NgControl, NgControlStatus, ReactiveFormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-vouchers',
@@ -24,27 +25,49 @@ export class VouchersComponent  implements OnInit {
         let listVouchers: any[] = result
         listVouchers.forEach((element) => {
           this.arrVouchers.push(element)
+          console.log(this.arrVouchers)
         });
       })
     }
 
     
-    searchQuery: string ="";
+    searchQuery: string = "";
+    intSearchPercent: number = 0;
+    
     searchVoucher() {
-      if (this.searchQuery.trim() === "") {
+      if (this.searchQuery == "") {
         window.location.reload();
         this.getAllVouchers();
       }
       else {
-        this.dataService.SearchVoucher(this.searchQuery).subscribe(
-          result => {
-            let listVouchers: any[] = result;
-            this.arrVouchers = [];
-            listVouchers.forEach( (element) => {
-              this.arrVouchers.push(element);
-            });
+
+        this.intSearchPercent = parseInt(this.searchQuery);
+        const isConversionSuccessful: boolean = !isNaN(this.intSearchPercent);
+
+        if (isConversionSuccessful == true) {
+
+          if (this.intSearchPercent > 100 || this.intSearchPercent < 1) {
+            Swal.fire('Please input a numeric value between 1 and 100','','warning');    
+
           }
-        );
+          else{
+            this.intSearchPercent = parseInt(this.searchQuery)
+            this.dataService.SearchVoucherPercent(this.intSearchPercent).subscribe(
+              result => {
+                let listVouchers: any[] = result;
+                this.arrVouchers = [];
+                listVouchers.forEach( (element) => {
+                  this.arrVouchers.push(element);
+                });
+              }
+            );
+  
+          }
+        }
+        else {
+          Swal.fire('Please input a numeric value between 1 and 100','','warning');    
+        }
+
       }
     }
     

@@ -14,7 +14,13 @@ export class EditVoucherComponent {
   constructor(private dataService: DataService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   //Creating the form 
-  editedVoucher: Voucher = new Voucher();
+  originalVoucher: Voucher = new Voucher();
+  currentDate = new Date(); 
+  minimumDate: string ="";
+  newDate: string = "";
+
+  strDay: string = "";
+  strMonth: string ="";
 
   formEditVoucher: FormGroup = new FormGroup({
     percent: new FormControl('', [Validators.required]),
@@ -31,12 +37,32 @@ export class EditVoucherComponent {
       this.dataService.GetSelectedVoucher(params['id']).subscribe(response => {
 
         //place response in page
-        this.editedVoucher = response as Voucher;
+        this.originalVoucher = response as Voucher;
 
-        //place retrieved data in cells
-        this.formEditVoucher.controls['percent'].setValue(this.editedVoucher.percent);
-        this.formEditVoucher.controls['expiry_Date'].setValue(this.editedVoucher.expiry_Date);
+        //setting up the current date to limit the date picker in the format datepicker takes (yyyy-MM-dd)
+        const year = this.currentDate.getFullYear();
+        const month = this.currentDate.getMonth() + 1; // Months are zero-based, so you need to add 1
+        const day = this.currentDate.getDate();
+        if (day < 10){
+          this.strDay = "0"+ day.toString();
+        }
+        else {
+          this.strDay = day.toString()
+        };
+
+        if (month < 10) {
+          this.strMonth = "0"+ month.toString();
+        }
+        else {
+          this.strMonth = month.toString();
+        }
+        this.minimumDate = year.toString() +"-"+ this.strMonth+"-"+ this.strDay;
+        console.log(this.minimumDate);
+        console.log(this.strDay);
+        console.log(day.toString());
       })
+
+
 
     })
 
@@ -44,20 +70,36 @@ export class EditVoucherComponent {
 
   editAVoucher()
   {
-    let selectedVoucher = new Voucher();
-    selectedVoucher.percent = this.formEditVoucher.value.percent;
+    this.strDay = "";
+    this.strMonth = "";
+    //retrieving selected date and converting it to the string format of the DB
+    const dateString = this.formEditVoucher.value.expiry_Date;
+    const dateObject = new Date(dateString);
+    const year = dateObject.getFullYear();
+    const month = dateObject.getMonth() + 1;
+    const day = dateObject.getDate();
+    if (day < 10){
+      this.strDay = "0"+ day.toString();
+    }
+    else {
+      this.strDay = day.toString()
+    };
 
-    const expiryDate = this.formEditVoucher.value.expiry_Date;
-    const formattedExpiryDate = new Date(expiryDate).toLocaleDateString('en-GB', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
-    }).replace(/\//g, '-');
+    if (month < 10) {
+      this.strMonth = "0"+ month.toString();
+    }
+    else {
+      this.strMonth = month.toString();
+    }
 
-    selectedVoucher.expiry_Date = formattedExpiryDate;
+    this.newDate = this.strDay +"-"+ this.strMonth +"-"+ year.toString();
 
 
-   this.dataService.UpdateAVoucher(this.editedVoucher.voucher_ID, selectedVoucher).subscribe((response:any) => {
+    let editedVoucher = new Voucher();
+    editedVoucher.percent = this.originalVoucher.percent;
+    editedVoucher.expiry_Date = this.newDate; 
+
+   this.dataService.UpdateAVoucher(this.originalVoucher.voucher_ID, editedVoucher).subscribe((response:any) => {
       this.router.navigate(['/vouchers'])
 
    });

@@ -36,6 +36,7 @@ builder.Services.AddScoped<IHelpRepository, HelpRepository>();
 builder.Services.AddScoped<IBlobRepository, BlobRepository>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<INewsletterRepository, NewsletterRepository>();
+builder.Services.AddScoped<IVoucherRepository, VoucherRepository>();
 
 
 

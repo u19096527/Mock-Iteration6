@@ -256,8 +256,8 @@ GetSelectedVoucher(Voucher_ID: number){
   return this.httpClient.get(this.apiUrl + `Voucher/GetAVoucher/${Voucher_ID}`);
 }
 
-SearchVoucher(enteredQuery: string): Observable<any> {
-  return this.httpClient.get<any>(`${this.apiUrl}Voucher/GetSearchedVouchers/${enteredQuery}`).pipe( map( result => result));
+SearchVoucherPercent(enteredQuery: number): Observable<any> {
+  return this.httpClient.get<any>(`${this.apiUrl}Voucher/SearchVoucherPercent/${enteredQuery}`).pipe( map( result => result));
 }
 
 
