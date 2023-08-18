@@ -24,16 +24,18 @@
               <div class="col-sm-2" style="text-align: right;"><strong>Description: </strong></div>
               <div class="col-sm-6"> {{selectedHelpTip.description}}</div>
           </div>
+          <br>
           <div class="row">
-            <div class="video-container">
-              <!-- <iframe [src]="getVideoUrl()" frameborder="0" allowfullscreen></iframe> -->
-            </div>   
-          </div>
+              <a [href]="streamLink" >
+                <button type="button" class="btn normButton" style="width: 200px; background-color: green;">DOWNLOAD VIDEO</button>
+              </a>
+          </div> 
+          <br>
           <button type="button" class="btn normButton" style="width: 140px;" [routerLink]="['/help-tips']">
               GO BACK
           </button>
+  
+          </div>
       </div>
     </div>   
-
-  </div>
  

@@ -28,5 +28,8 @@ namespace Iteration6_API.Models
         [Required]
         public int? Student_ID { get; set; }
         public Student? Students { get; set; }
+        [NotMapped]
+        public int Recipients { get; internal set; }
+
     }
 }

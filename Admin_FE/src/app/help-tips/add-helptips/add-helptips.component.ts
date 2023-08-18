@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
@@ -8,6 +8,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser'; // Im
 import { ElementRef, ViewChild } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import Swal from 'sweetalert2';
+import { AuditTrail } from 'src/app/shared/audit-trail';
 
 
 @Component({
@@ -16,7 +18,7 @@ import {MatCardModule} from '@angular/material/card';
   styleUrls: ['./add-helptips.component.scss']
 })
 
-export class AddHelptipsComponent {
+export class AddHelptipsComponent implements OnInit {
 
   @ViewChild('videoPlayer') videoPlayer!: ElementRef;
 
@@ -83,6 +85,8 @@ handleVideoUpload(event: Event) {
           control.markAsDirty();
           control.updateValueAndValidity({onlySelf: true});
         }
+
+        Swal.fire('Please fill in the form','','info');
       });
     }else
     {
@@ -157,6 +161,7 @@ handleVideoUpload(event: Event) {
           control.markAsDirty();
           control.updateValueAndValidity({onlySelf: true});
         }
+        Swal.fire('Please fill in the form','','info');
       });
     }
     else
@@ -167,13 +172,18 @@ handleVideoUpload(event: Event) {
       newHelpTip.append('VideoFile', this.selectedFile, this.selectedFile.name);
 
       this.dataService.AddNewHelpTip(newHelpTip).subscribe(
-        result => {       
-          this.router.navigate(['/help-tips'])
+        result => { 
 
-          // this.auditService.addAction(new auditEntry(1,auditEntryType.UploadedVideo,"Uploaded Video named " + this.formAddHelpTip.controls["Name"].value));
-          // this.saveActions()
+          let newTrail = new AuditTrail();
+          newTrail.auditEntryTypeID = 9;
+          newTrail.comment = "Added new help tip '"+this.formAddHelpTip.value.name+"'"      
+          this.dataService.GenerateAuditTrail(newTrail).subscribe( response => {
+            this.router.navigate(['/help-tips'])
+          });    
+
         },
         error => {
+          Swal.fire(error.status,'','error');
           // Handle error here
           console.error('Error adding new help tip:', error);
           // You can show an error message to the user or perform other actions
@@ -182,7 +192,36 @@ handleVideoUpload(event: Event) {
     }
   }
 
-  
+  ConfirmAddHelp(){
+    Swal.fire({
+      title: 'Are these the correct help tip details?',
+      text: "Help Tip Name:"+this.formAddHelpTip.value.name +" | Help Tip Description:" + this.formAddHelpTip.value.description,
+      showConfirmButton: true,
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) //if user clicked yes
+      {
+        this.addNewHelpTip();
+      } else if ( (result.isDenied) || (result.isDismissed))//if user clicked no
+      {
+        Swal.fire('Please verify that you have entered the correct information.', '', 'info')
+      }
+    })
+  }
+
+  AbortAddHelp() {
+    Swal.fire({
+      icon: 'error',
+      text: 'Add Help Tip has been aborted.',
+    }).then( (answer) =>{
+      if ( (answer.isConfirmed) || (answer.isDismissed) )
+      {
+        this.router.navigate(['/help-tips'])
+      }
+    });
+  }
 }
 
 

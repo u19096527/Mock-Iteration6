@@ -1,0 +1,70 @@
+<!-- TITLE OF PAGE BAR -->
+<div class="titlePage">
+    <h4 style="font-weight: bold; padding-top: 5px;"> &nbsp;&nbsp;
+        REPORTS
+    </h4>
+</div>
+
+<div class="row" style="padding-left: 15px;padding-right: 15px;">
+    <div class="col-md-9">
+        <br>
+        <form class="form-group" [formGroup]="formDateFilter"> 
+            <mat-form-field style="width: 200px">
+                <mat-label>Start Date</mat-label>
+                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="startDate" (dateChange)="addEvent($event)" name="startDate" formControlName="startDate">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="startDate"></mat-datepicker-toggle>
+                <mat-datepicker #startDate></mat-datepicker>
+              </mat-form-field>
+                &nbsp; to &nbsp;
+              <mat-form-field style="width: 200px">
+                <mat-label>End Date</mat-label>
+                <input matInput [min]="endDateMin" [max]="maxDate" [matDatepicker]="endDate" name="endDate" formControlName="endDate">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="endDate"></mat-datepicker-toggle>
+                <mat-datepicker #endDate></mat-datepicker>
+              </mat-form-field>
+                &nbsp;
+    
+        </form>
+          <a class="normButton btn" (click)="applyDateFilter()" style="background-color:cornflowerblue; justify-content: flex-end;text-align: right;padding-top: 10px;">
+            &nbsp;
+            APPLY FILTER
+        </a>
+    </div>
+    <div class="col-md-3" style="justify-content: flex-end;text-align: right;padding-top: 10px;">
+        <a class="normButton btn" (click)="downloadAuditTrailReport()">
+            &nbsp;
+            DOWNLOAD AUDIT TRAIL REPORT
+        </a>
+    </div>
+</div>
+
+<div style="padding-left: 15px;padding-right: 15px;padding-top: 15px;">
+    <table id="my-table" class="table table-inverse datatable-table">
+        <thead>
+            <tr>
+                <th>TimeStamp</th>
+                <th>Action Type</th>
+                <th>Employee</th>
+                <th>Comment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of arrAuditTrails">
+                <td>
+                    {{item.dateTimeStamp}}
+                </td>
+                <td>
+                    {{item.audit_Entry_Type}}
+                </td>
+                <td>
+                    {{item.name}} {{item.surname}}
+                </td>
+                <td>
+                    {{item.comment}}
+                </td>
+            </tr>
+        </tbody>
+    </table> 
+</div>

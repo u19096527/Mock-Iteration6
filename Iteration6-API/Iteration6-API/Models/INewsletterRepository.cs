@@ -6,10 +6,13 @@
         void Delete<T>(T entity) where T : class;
 
         Task<bool> SaveChangesAsync();
+        Task<Newsletter[]> GetAllNewslettersAsync();
+        Task<Newsletter[]> SortByDescendingAsync();
 
-        Task<Newsletter[]> GetSearchedNewsletter(string enteredQuery);
 
-        void DeleteNewsletterBlob(string name);
+        Task<Newsletter[]> GetSearchedNewsletterAsync(string enteredQuery);
+
+        void DeleteNewsletterBlobAsync(string name);
 
     }
 }

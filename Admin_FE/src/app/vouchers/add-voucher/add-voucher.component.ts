@@ -49,7 +49,7 @@ minimumDate: string ="";
   }
 
 
-  CancelAddVoucher(){
+  AbortAddVoucher(){
     Swal.fire({
       icon: 'error',
       text: 'Add Voucher has been aborted.',

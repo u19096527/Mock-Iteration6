@@ -37,6 +37,8 @@ builder.Services.AddScoped<IBlobRepository, BlobRepository>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<INewsletterRepository, NewsletterRepository>();
 builder.Services.AddScoped<IVoucherRepository, VoucherRepository>();
+builder.Services.AddScoped<IAuditTrailRepository, AuditTrailRepository>();
+
 
 
 
@@ -51,7 +53,7 @@ var app = builder.Build();
 
 app.UseCors(builder =>
 {
-    builder.WithOrigins("http://localhost:4200", "http://localhost:64188")
+    builder.WithOrigins("http://localhost:4200", "http://localhost:64188", "http://localhost:53190")
            .AllowAnyMethod()
            .AllowAnyHeader();
 });

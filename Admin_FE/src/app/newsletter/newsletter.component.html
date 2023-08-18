@@ -1,6 +1,72 @@
-<div style="background-color: #50294A;padding:20px;justify-content: center;text-align: center;">
-    <i class="fas fa-desktop fa-5x" style="color: #AE7595;padding: 10px;"></i>
-    <br>
-    <h1>Content Coming Soon</h1>
-    <p>Stay tuned for more information!</p>
+<!-- TITLE OF PAGE BAR -->
+<div class="titlePage">
+    <h4 style="font-weight: bold; padding-top: 5px;"> &nbsp;&nbsp;
+        NEWSLETTERS
+    </h4>
+</div>
+
+<div class="row" style="padding-left: 15px;padding-right: 15px;">
+    <div class="col-md-9">
+        <form >
+            <input type="search" placeholder="Search for a newsletter" name="searchQuery" (input)="searchNewsletter()" [(ngModel)]="searchQuery" >
+        </form>     
+    </div>
+    <div class="col-md-3" style="justify-content: flex-end;text-align: right;padding-top: 10px;">
+        <a [routerLink]="'/send-newsletter'" class="normButton btn">
+            <i class='fas fa-share-square'></i>
+            &nbsp;
+            SEND NEWSLETTER
+        </a>
+    </div>
+</div>
+<div class="row" style="padding-left: 30px;padding-right: 15px;"> 
+    <label for="dateOrderBy">Date: </label> &nbsp;
+    <select id="dateOrderBy" name="dateOrderBy" (change)="handleChange()">
+      <option value="ascending">Ascending Order</option>
+      <option value="descending">Descending Order</option>
+    </select>
+</div>
+
+<div style="padding-left: 15px;padding-right: 15px;padding-top: 15px;">
+    <table class="table table-inverse datatable-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Recipients</th>
+                <th>Subject</th>
+                <th>Email Text</th>
+                <th>File Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of arrNewsletters" style="width: 100">
+                <td>
+                    {{item.date}}
+                </td>
+                <td>
+                    {{item.recipients}}
+                </td>
+                <td>
+                    {{item.subject}}
+                </td>
+                <td>
+                    {{item.description}}
+                </td>
+
+                <td>
+                    {{item.fileName}}
+                 </td> 
+                <!-- CONTINUE EDITING FROM HERE -->
+                <td style="text-align: right;">
+                    <a [href]="item.filePath" download>
+                        <button class="btn update" style="background-color:#3B71CA;">
+                          <i class="fa fa-download"></i> &nbsp; DOWNLOAD
+                        </button>
+                      </a>
+                      
+                </td>
+            </tr>
+        </tbody>
+    </table> 
 </div>

@@ -3,6 +3,7 @@ import { Student } from '../shared/student';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-students',
@@ -53,11 +54,29 @@ export class StudentsComponent implements OnInit {
     }
 
     deleteStudent(student_ID: number){
-      this.dataService.DeleteStudent(student_ID).subscribe( (response:any) => {
-        window.location.reload();
-        this.snackbar.open('Student has been successfully deleted', 'Close', { duration: 3000 });
+
+      Swal.fire({
+        title: 'Are you sure you want to delete this student?',
+        showConfirmButton: true,
+        showDenyButton: true,
+        confirmButtonColor: "green",
+        confirmButtonText: 'Yes',
+        denyButtonText: 'No'
+      }).then((result) => {
+        if (result.isConfirmed) //if user clicked yes
+        {
+          this.dataService.DeleteStudent(student_ID).subscribe( (response:any) => {
+            window.location.reload();
+          })        
+        } else if ( (result.isDenied) || (result.isDismissed))//if user clicked no
+        {
+          Swal.fire('Delete Student has been aborted', '', 'error')
+        }
       })
-    }
+
+
+    }  
+
   
 
 }

@@ -63,7 +63,8 @@ import { StockTakeComponent } from './inventory/stock-take/stock-take.component'
 import { WriteOffComponent } from './inventory/write-off/write-off.component';
 import { AddBookComponent } from './inventory/books/add-book/add-book.component';
 import { UpdateBookComponent } from './inventory/books/update-book/update-book.component';
-
+import { SendNewsletterComponent } from './newsletter/send-newsletter/send-newsletter.component';
+import { AudittrailReportComponent } from './reports/audittrail-report/audittrail-report.component';
 
 
 
@@ -110,8 +111,11 @@ const routes: Routes = [
   { path: 'view-helptip/:id', component: ViewHelptipComponent },
 
   { path: 'newsletter', component: NewsletterComponent },
+  { path: 'send-newsletter', component: SendNewsletterComponent },
+
   { path: 'orders', component: OrdersComponent },
   { path: 'reports', component: ReportsComponent },
+  { path: 'audit-trail', component: AudittrailReportComponent },
   { path: 'resale', component: ResaleComponent },
   { path: 'sale', component: SaleComponent },
   { path: 'add-sale', component: AddSaleComponent },

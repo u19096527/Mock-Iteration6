@@ -3,6 +3,7 @@ import { HelpTip } from '../shared/help-tip';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuditTrail } from '../shared/audit-trail';
 
 
 
@@ -15,6 +16,7 @@ export class HelpTipsComponent implements OnInit {
 
   constructor(private dataService: DataService, private router: Router) {}
   arrHelpTips: HelpTip[] = [];
+  selectedHelpTip!: HelpTip;
 
   ngOnInit(): void {
     this.getAllHelpTips()
@@ -69,17 +71,22 @@ export class HelpTipsComponent implements OnInit {
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          this.dataService.DeleteHelpTip(help_ID).subscribe( (response:any) => {
-            window.location.reload();
-          })
-          window.onload;    
+            this.dataService.GetSelectedHelpTip(help_ID).subscribe(response => {
+              this.selectedHelpTip = response as HelpTip;
+
+              this.dataService.DeleteHelpTip(help_ID).subscribe( (response:any) => {
+                let newTrail = new AuditTrail();
+                newTrail.auditEntryTypeID = 12;
+                newTrail.comment = "Deleted help tip '"+this.selectedHelpTip.name+"'"     
+                this.dataService.GenerateAuditTrail(newTrail); 
+                window.onload;       
+                })    
+            })
         } 
         else if (result.isDenied) {
           Swal.fire('Delete help tip has been aborted', '', 'warning')
         }
       })
-
-
     }
 
 }

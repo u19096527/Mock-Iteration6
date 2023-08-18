@@ -52,8 +52,7 @@
                             class="fa fa-edit"></i>&nbsp;&nbsp; 
                             UPDATE 
                     </button>
-                    <button class="btn delete" style="margin-left: 4px;" data-toggle="modal"
-                        [attr.data-target]="'#removeModal-'+item.student_ID" ><i class="far fa-trash-alt"></i>&nbsp;&nbsp; 
+                    <button class="btn delete" style="margin-left: 4px;" (click)="deleteStudent(item.student_ID)"><i class="far fa-trash-alt"></i>&nbsp;&nbsp; 
                         DELETE 
                     </button>
                 </td>

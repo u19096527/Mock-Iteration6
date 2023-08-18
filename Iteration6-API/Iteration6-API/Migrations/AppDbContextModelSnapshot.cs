@@ -22,6 +22,326 @@ namespace Iteration6_API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Iteration6_API.Models.AuditEntryType", b =>
+                {
+                    b.Property<int>("Audit_Entry_Type_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Audit_Entry_Type_ID"), 1L, 1);
+
+                    b.Property<string>("Audit_Entry_Type")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Audit_Entry_Type_ID");
+
+                    b.ToTable("AuditEntryTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Audit_Entry_Type_ID = 1,
+                            Audit_Entry_Type = "BackUpSystemData"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 2,
+                            Audit_Entry_Type = "RestoreSystemData"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 3,
+                            Audit_Entry_Type = "UpdateVAT"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 4,
+                            Audit_Entry_Type = "ViewVAT"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 5,
+                            Audit_Entry_Type = "AddUserRole"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 6,
+                            Audit_Entry_Type = "UpdateUserRole"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 7,
+                            Audit_Entry_Type = "DeleteUserRole"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 8,
+                            Audit_Entry_Type = "AddHelpTip"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 9,
+                            Audit_Entry_Type = "UpdateHelpTip"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 10,
+                            Audit_Entry_Type = "DeleteHelpTip"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 11,
+                            Audit_Entry_Type = "SendNewsletter"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 12,
+                            Audit_Entry_Type = "PerformStockTake"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 13,
+                            Audit_Entry_Type = "WriteOffInventory"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 14,
+                            Audit_Entry_Type = "ViewAuditTrail"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 15,
+                            Audit_Entry_Type = "UploadPrescribedBookList"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 16,
+                            Audit_Entry_Type = "AddPrescribedBook"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 17,
+                            Audit_Entry_Type = "AddBook"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 18,
+                            Audit_Entry_Type = "UpdateBook"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 19,
+                            Audit_Entry_Type = "DeleteBook"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 20,
+                            Audit_Entry_Type = "AddModule"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 21,
+                            Audit_Entry_Type = "UpdateModule"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 22,
+                            Audit_Entry_Type = "DeleteModule"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 23,
+                            Audit_Entry_Type = "AddFaculty"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 24,
+                            Audit_Entry_Type = "UpdateFaculty"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 25,
+                            Audit_Entry_Type = "DeleteFaculty"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 26,
+                            Audit_Entry_Type = "AddDepartment"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 27,
+                            Audit_Entry_Type = "UpdateDepartment"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 28,
+                            Audit_Entry_Type = "DeleteDepartment"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 29,
+                            Audit_Entry_Type = "AddEvaluationSchedule"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 30,
+                            Audit_Entry_Type = "UpdateEvaluationSchedule"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 31,
+                            Audit_Entry_Type = "RemoveEvaluationSchedule"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 32,
+                            Audit_Entry_Type = "EvaluationScheduleSummary"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 33,
+                            Audit_Entry_Type = "GenerateBookVoucher"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 34,
+                            Audit_Entry_Type = "UpdateBookVoucher"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 35,
+                            Audit_Entry_Type = "DeleteBookVoucher"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 36,
+                            Audit_Entry_Type = "AddEmployee"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 37,
+                            Audit_Entry_Type = "UpdateEmployee"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 38,
+                            Audit_Entry_Type = "DeleteEmployee"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 39,
+                            Audit_Entry_Type = "AddEmployeeType"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 40,
+                            Audit_Entry_Type = "UpdateEmployeeType"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 41,
+                            Audit_Entry_Type = "DeleteEmployeeType"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 42,
+                            Audit_Entry_Type = "AddEquipment"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 43,
+                            Audit_Entry_Type = "UpdateEquipment"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 44,
+                            Audit_Entry_Type = "DeleteEquipment"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 45,
+                            Audit_Entry_Type = "AddEquipmentType"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 46,
+                            Audit_Entry_Type = "UpdateEquipmentType"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 47,
+                            Audit_Entry_Type = "DeleteEquipmentType"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 48,
+                            Audit_Entry_Type = "CaptureEquipment"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 49,
+                            Audit_Entry_Type = "AddStudent"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 50,
+                            Audit_Entry_Type = "UpdateStudent"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 51,
+                            Audit_Entry_Type = "DeleteStudent"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 52,
+                            Audit_Entry_Type = "WalkInSalesReport"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 53,
+                            Audit_Entry_Type = "BookInventoryReport"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 54,
+                            Audit_Entry_Type = "LabEquipmentInventoryReport"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 55,
+                            Audit_Entry_Type = "OnlineOrdersReport"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 56,
+                            Audit_Entry_Type = "ResellersReport"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 57,
+                            Audit_Entry_Type = "AuditTrailReport"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 58,
+                            Audit_Entry_Type = "AddSupplier"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 59,
+                            Audit_Entry_Type = "UpdateSupplier"
+                        },
+                        new
+                        {
+                            Audit_Entry_Type_ID = 60,
+                            Audit_Entry_Type = "DeleteSupplier"
+                        });
+                });
+
             modelBuilder.Entity("Iteration6_API.Models.AuditTrail", b =>
                 {
                     b.Property<int>("AuditTrail_ID")
@@ -30,20 +350,23 @@ namespace Iteration6_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AuditTrail_ID"), 1L, 1);
 
-                    b.Property<string>("Date")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<int>("Employee_ID")
+                    b.Property<int>("Audit_Entry_Type_ID")
                         .HasColumnType("int");
 
-                    b.Property<string>("Note")
+                    b.Property<string>("Comment")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<DateTime>("DateTimeStamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Employee_ID")
+                        .HasColumnType("int");
+
                     b.HasKey("AuditTrail_ID");
+
+                    b.HasIndex("Audit_Entry_Type_ID");
 
                     b.HasIndex("Employee_ID");
 
@@ -347,11 +670,19 @@ namespace Iteration6_API.Migrations
 
             modelBuilder.Entity("Iteration6_API.Models.AuditTrail", b =>
                 {
+                    b.HasOne("Iteration6_API.Models.AuditEntryType", "AuditEntryTypes")
+                        .WithMany("AuditTrail")
+                        .HasForeignKey("Audit_Entry_Type_ID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Iteration6_API.Models.Employee", "Employees")
                         .WithMany("AuditTrail")
                         .HasForeignKey("Employee_ID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("AuditEntryTypes");
 
                     b.Navigation("Employees");
                 });
@@ -422,6 +753,11 @@ namespace Iteration6_API.Migrations
                         .IsRequired();
 
                     b.Navigation("UserRole");
+                });
+
+            modelBuilder.Entity("Iteration6_API.Models.AuditEntryType", b =>
+                {
+                    b.Navigation("AuditTrail");
                 });
 
             modelBuilder.Entity("Iteration6_API.Models.Employee", b =>

@@ -73,6 +73,8 @@ import { StockTakeComponent } from './inventory/stock-take/stock-take.component'
 import { WriteOffComponent } from './inventory/write-off/write-off.component';
 import { AddBookComponent } from './inventory/books/add-book/add-book.component';
 import { UpdateBookComponent } from './inventory/books/update-book/update-book.component';
+import { SendNewsletterComponent } from './newsletter/send-newsletter/send-newsletter.component';
+import { AudittrailReportComponent } from './reports/audittrail-report/audittrail-report.component';
 
 @NgModule({
   declarations: [
@@ -143,7 +145,9 @@ import { UpdateBookComponent } from './inventory/books/update-book/update-book.c
     StockTakeComponent,
     WriteOffComponent,
     AddBookComponent,
-    UpdateBookComponent
+    UpdateBookComponent,
+    SendNewsletterComponent,
+    AudittrailReportComponent
   ],
   imports: [
     BrowserModule,

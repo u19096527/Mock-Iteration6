@@ -122,6 +122,35 @@ namespace Iteration6_API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetAllNewsletters")]
+        public async Task<IActionResult> GetAllNewsletters()
+        {
+            try
+            {
+                var results = await _newsletterRepository.GetAllNewslettersAsync();
+                return Ok(results);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error getting all students: {ex.Message}");
+            }
+        }
+
+        [HttpGet]
+        [Route("SortByDescending")]
+        public async Task<IActionResult> SortByDescending()
+        {
+            try
+            {
+                var results = await _newsletterRepository.SortByDescendingAsync();
+                return Ok(results);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error sorting by descending : {ex.Message}");
+            }
+        }
 
     }
 }

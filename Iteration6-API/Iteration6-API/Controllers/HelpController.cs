@@ -198,7 +198,7 @@ namespace Iteration6_API.Controllers
                 var file = helpTipModel.VideoFile;
                 if (file != null && file.Length > 0)
                 {
-                    _blobRepository.DeleteBlob(existingHelpTip.FileName);
+                    _blobRepository.DeleteHelpBlob(existingHelpTip.FileName);
                     //sanitize the file name
                     string sanitizedFileName = Path.GetFileNameWithoutExtension(file.FileName)
                         .Replace(" ", "_")
@@ -250,7 +250,7 @@ namespace Iteration6_API.Controllers
                     return NotFound($"The help tip does not exist");
                 }
 
-                _blobRepository.DeleteBlob(existingHelpTip.FileName);
+                _blobRepository.DeleteHelpBlob(existingHelpTip.FileName);
                 _helpTipRepository.Delete(existingHelpTip);
 
                 if (await _helpTipRepository.SaveChangesAsync())

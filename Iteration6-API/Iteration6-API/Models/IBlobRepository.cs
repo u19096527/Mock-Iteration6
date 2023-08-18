@@ -4,7 +4,7 @@
     {
         Task<BlobObject> GetBlobFile(string name);
         //Task<string> UploadBlobFile(string fileName, string filePath);
-        void DeleteBlob(string name);
+        void DeleteHelpBlob(string name);
         Task<List<string>> ListBlobs();
         Task<string> UploadBlobFile(string fileName, byte[] fileData);
         Task<string> GenerateBlobStreamLinkAsync(string fileName);

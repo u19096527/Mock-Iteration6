@@ -95,6 +95,7 @@ namespace Iteration6_API.Models
 
             // Upload the file to Blob storage
             var blobClient = newsletterClient.GetBlobClient(fileName);
+            blobClient.DeleteIfExists();
             var status = await blobClient.UploadAsync(new MemoryStream(fileData));
 
             // This returns a string of where exactly your file is stored
@@ -102,7 +103,7 @@ namespace Iteration6_API.Models
         }
 
 
-        public async void DeleteBlob(string path)
+        public async void DeleteHelpBlob(string path)
         {
             var fileName = path;
             //new Uri(path).Segments.LastOrDefault();

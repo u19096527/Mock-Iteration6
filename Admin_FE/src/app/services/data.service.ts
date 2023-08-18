@@ -22,6 +22,8 @@ import { throwError } from 'rxjs';
 import { PrescribedList } from '../shared/prescribedlist';
 import { PrescribedBook } from '../shared/prescribedbook';
 import { Employee } from '../shared/employee';
+import { Newsletter } from '../shared/newsletter';
+import { AuditTrail } from '../shared/audit-trail';
 
 
 
@@ -259,6 +261,7 @@ GetSelectedVoucher(Voucher_ID: number){
 SearchVoucherPercent(enteredQuery: number): Observable<any> {
   return this.httpClient.get<any>(`${this.apiUrl}Voucher/SearchVoucherPercent/${enteredQuery}`).pipe( map( result => result));
 }
+
 
 
 
@@ -563,5 +566,26 @@ SearchStudent(enteredQuery: string): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}Help/GetSearchedUserRole/${enteredQuery}`).pipe( map( result => result));
   }
 
+    //---------------------------------------Newsletters------------------------------
 
+  GetAllTheNewsletters(): Observable<any> {
+    return this.httpClient.get(`${this.apiUrl}Newsletter/GetAllNewsletters`).pipe( map( result => result) )
+  }
+
+  SortNewslettersByDescending(): Observable<any> {
+    return this.httpClient.get(`${this.apiUrl}Newsletter/SortByDescending`).pipe( map( result => result) )
+  }
+
+  SendANewsletter(newsletter: FormData){
+    return this.httpClient.post(this.apiUrl + `Newsletter/SendNewsletter`, newsletter);
+  }
+
+    //---------------------------------------Audit Trail------------------------------//
+GenerateAuditTrail(auditTrail: AuditTrail){
+  return this.httpClient.post(this.apiUrl + `AuditTrail/GenerateAuditTrail`, auditTrail);
+}
+
+GetAuditTrail(): Observable<any> {
+  return this.httpClient.get(this.apiUrl + `AuditTrail/GetAllAuditTrails`).pipe( map( result => result) )
+}
 }

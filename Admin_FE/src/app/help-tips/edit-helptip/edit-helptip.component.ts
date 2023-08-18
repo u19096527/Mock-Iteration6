@@ -1,5 +1,5 @@
 import { ComponentFixture } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -7,15 +7,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { HelpTip } from 'src/app/shared/help-tip';
 import Swal from 'sweetalert2';
+import { AuditTrail } from 'src/app/shared/audit-trail';
 
 @Component({
   selector: 'app-edit-helptip',
   templateUrl: './edit-helptip.component.html',
   styleUrls: ['./edit-helptip.component.scss']
 })
-export class EditHelptipComponent {
+export class EditHelptipComponent implements OnInit{
   constructor(private dataService: DataService, private router: Router, private activatedRoute: ActivatedRoute, private sanitizer: DomSanitizer) { }
-
+  selectedFile: any;
   //Creating the form 
   editedHelpTip: HelpTip = new HelpTip();
 
@@ -55,7 +56,7 @@ export class EditHelptipComponent {
                 this.linkGenerated=true;
             },
             error => {
-                console.error('Error generating help tip:', error);
+                console.error('Error generating help tip link:', error);
             }
         );
       
@@ -69,10 +70,7 @@ export class EditHelptipComponent {
   EditVideo: boolean = false
 
   YesChangeVideo(){
-this.linkGenerated = false;
-  }
-  NoChangeVideo(){
-
+    this.linkGenerated = false;
   }
 
   AbortEditHelp(){
@@ -110,39 +108,66 @@ this.linkGenerated = false;
     if (this.formEditHelpTip.controls['name']?.invalid || this.formEditHelpTip.controls['description']?.invalid) {
       Swal.fire('Please fill in the form','','warning')
     }
-    else{
+    else {
       let selectedHelpTip = new FormData();
-      //if no new video is added then only edit the textboxes
+      //if no new video is added then only edit with info from the textboxes
       if (this.selectedFile == null || this.selectedFile.length < 0) {
         selectedHelpTip.append('Name', this.formEditHelpTip.value.name);
         selectedHelpTip.append('Description', this.formEditHelpTip.value.description);
+
+        this.dataService.UpdateAHelpTip(this.editedHelpTip.help_ID, selectedHelpTip).subscribe(
+          result => {     
+            Swal.fire('Help tip has been edited successfully','','success');  
+  
+            let newTrail = new AuditTrail();
+            newTrail.auditEntryTypeID = 11;
+            newTrail.comment = "Updated help tip '"+this.formEditHelpTip.value.name+"'"     
+            this.dataService.GenerateAuditTrail(newTrail).subscribe( response => {
+              this.router.navigate(['/help-tips'])
+
+            });  
+  
+          },
+          error => {
+            // Handle error here
+            Swal.fire('Error adding new help tip','','error');
+          }
+        )
+
       }
-      else //else if video is uploaded then edit video too
+      else if (this.selectedFile != null)//else if video is uploaded then edit video too
       {
-        selectedHelpTip.append('Name', this.formEditHelpTip.value.name);
-        selectedHelpTip.append('Description', this.formEditHelpTip.value.description);
-        selectedHelpTip.append('VideoFile', this.selectedFile, this.selectedFile.name);
-      }
-
-      this.dataService.UpdateAHelpTip(this.editedHelpTip.help_ID, selectedHelpTip).subscribe(
-        result => {       
-          this.router.navigate(['/help-tips'])
-
-          // this.auditService.addAction(new auditEntry(1,auditEntryType.UploadedVideo,"Uploaded Video named " + this.formAddHelpTip.controls["Name"].value));
-          // this.saveActions()
-        },
-        error => {
-          // Handle error here
-          Swal.fire('Error adding new help tip',error,'error');
-          // console.error('Error adding new help tip:', error);
-          // You can show an error message to the user or perform other actions
+        if(this.selectedFile.size > 30000000 ) //check if its more than 30MB
+        {
+          Swal.fire('File too big','Please upload a file that is smaller than 30MB','error')
         }
-      )
+        else {
+          selectedHelpTip.append('Name', this.formEditHelpTip.value.name);
+          selectedHelpTip.append('Description', this.formEditHelpTip.value.description);
+          selectedHelpTip.append('VideoFile', this.selectedFile, this.selectedFile.name);  
+        }
 
-    }
+        this.dataService.UpdateAHelpTip(this.editedHelpTip.help_ID, selectedHelpTip).subscribe(
+          result => {     
+            Swal.fire('Help tip has been added successfully','','success');  
+            this.router.navigate(['/help-tips'])
+  
+            let newTrail = new AuditTrail();
+            newTrail.auditEntryTypeID = 11;
+            newTrail.comment = "Updated help tip '"+this.formEditHelpTip.value.name+"'"     
+            this.dataService.GenerateAuditTrail(newTrail);    
+          },
+          error => {
+            // Handle error here
+            Swal.fire('Error adding new help tip','','error');
+          }
+        )
 
+      }
+    }     
 
   }
+
 
   //-----------------get video from file upload
   handleVideoUpload(event: Event) {
@@ -177,7 +202,7 @@ this.linkGenerated = false;
   showNoVideoMessage: boolean = false;
   showErrorMessage: boolean = false;
   verifyButtons: boolean = false;
-  selectedFile: any;
+
 
   VerifyVideo() {
 

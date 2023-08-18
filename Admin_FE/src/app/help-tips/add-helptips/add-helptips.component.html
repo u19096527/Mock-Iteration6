@@ -89,43 +89,13 @@
       <!-- if the right video is uploaded then show add help tip options -->
       <div *ngIf="isTheRightVideoUploaded">
         <br>
-        <button type="button" class="btn normButton" style="width: 140px;" data-toggle="modal" data-target="#addModal"
-        [disabled]="formAddHelpTip.invalid">
+        <button type="button" class="btn normButton" style="width: 140px;"
+        [disabled]="formAddHelpTip.invalid" (click)="ConfirmAddHelp()">
         ADD HELP TIP
       </button>
-      <button type="button" class="btn normCancel" style="margin-left:20px;width: 140px;" data-toggle="modal"
-        data-target="#abortModal">
+      <button type="button" class="btn normCancel" style="margin-left:20px;width: 140px;" (click)="AbortAddHelp()">
         CANCEL
       </button>
-
-        <div class="modal fade" id="addModal" role="dialog" data-backdrop="false">
-          <div class="modal-dialog modal-md">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div style="background-color: #D9D9D9;height: fit-content;">
-                <i type="button" class="close modalLabel fa fa-times-circle" data-dismiss="modal"></i>
-              </div>
-              <div class="modal-body">
-                <div style="text-align: center;margin-top: 20px;margin-bottom: 20px;">
-                  <h5>
-                    <i class="fa fa-exclamation-triangle fa-2x" style="color: #FFDB58;"></i>&nbsp;&nbsp; Are you sure
-                    you want to add this help tip?
-                  </h5>
-                </div>
-                <div style="text-align: center;margin-top: 5px;margin-bottom: 5px;">
-                  <button type="button" class="btn update" style="width: 140px;" data-dismiss="modal"
-                    data-toggle="modal" data-target="#successModal" (click)="addNewHelpTip()"> CONFIRM
-                  </button>
-                  <button type="button" class="btn normCancel" data-dismiss="modal" data-toggle="modal" data-target="abortModal"
-                    style="margin-left:20px;width: 140px;"> CANCEL </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
       </div>
 
       <!-- if no video is uploaded and verify is clicked then show this error message -->
